@@ -8,10 +8,6 @@ class Schedule extends Model
 {
     protected $table = "schedules";
 
-    protected $fillable = [
-        ''
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\User','idUser','id');
