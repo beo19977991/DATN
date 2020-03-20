@@ -9,10 +9,11 @@ class Post extends Model
     protected $table = "posts";
 
     protected $fillable =[
+        'idUser',
         'title',
         'preview',
         'body',
-        'image',
+        'photo',
         'likes',
     ];
 
@@ -28,6 +29,6 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongTo('App\User','idUser','id');
+        return $this->belongsTo('App\User','idUser','id');
     }
 }

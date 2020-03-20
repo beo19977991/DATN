@@ -14,6 +14,6 @@ class Order extends Model
 
     public function orderDevice()
     {
-        return $this->hasMany('App\OrderDevice','idOrder','id');
+        return $this->hasMany('App\OrderProduct','idOrder','id');
     }
 }

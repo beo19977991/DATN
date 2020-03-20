@@ -9,11 +9,11 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <!-- @if(session('thongbao'))
+                    @if(session('message'))
                         <div class="alert alert-success">
-                            {{session('thongbao')}}
+                            {{session('message')}}
                         </div>
-                    @endif -->
+                    @endif
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr align="center">
