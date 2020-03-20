@@ -51,6 +51,7 @@
                 </ul>
             </li>
             <li><a href="#">Contact</a></li>
+            <!-- <li><a href="#">{{$user_login}}</a></li> -->
             </ul>
         </nav>
     </div>

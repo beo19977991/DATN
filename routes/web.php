@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('index');
 })->name('home');
 Route::get('trainer',function(){
@@ -81,7 +81,14 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
         Route::get('delete/{id}','UserController@getDelete');
     });
     Route::group(['prefix' => 'post'], function () {
-        
+        Route::get('list','PostController@getList');
+
+        Route::get('add','PostController@getAdd');
+        Route::post('add','PostController@postAdd');
+
+        Route::get('delete/{id}','PostController@getDelete');
+
+        // Route::get('block/{id}','PostController@getBlock');
     });
     Route::group(['prefix' => 'schedule'], function () {
         
@@ -92,7 +99,7 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
     Route::group(['prefix' => 'course'], function () {
         
     });
-    Route::group(['prefix' => 'device'], function () {
+    Route::group(['prefix' => 'product'], function () {
         
     });
 });
