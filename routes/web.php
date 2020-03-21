@@ -88,7 +88,6 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
         Route::get('delete/{id}','PostController@getDelete');
 
-        // Route::get('block/{id}','PostController@getBlock');
     });
     Route::group(['prefix' => 'schedule'], function () {
         
@@ -101,5 +100,8 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
     });
     Route::group(['prefix' => 'product'], function () {
         
+    });
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('post/{idPost}','PostController@getBlock');
     });
 });
