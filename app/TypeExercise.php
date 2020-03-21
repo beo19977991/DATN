@@ -11,4 +11,8 @@ class TypeExercise extends Model
     protected $fillable =[
         'typeExerciseName',
     ];
+    public function exercise()
+    {
+        return $this->hasMany('App\Exercise','idExerciseType','id');
+    }
 }

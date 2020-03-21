@@ -8,6 +8,7 @@ class Exercise extends Model
 {
     protected $table = "exercises";
     protected $fillable =[
+        'idUser',
         'title',
         'preview',
         'video',
@@ -19,6 +20,6 @@ class Exercise extends Model
     }
     public function typeExercise()
     {
-        return $this->hasOne('App\TypeExercise','idExerciseType','id');
+        return $this->belongsTo('App\TypeExercise','idExerciseType','id');
     }
 }
