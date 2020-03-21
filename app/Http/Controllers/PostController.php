@@ -66,6 +66,15 @@ class PostController extends Controller
 
     public function getDelete($id)
     {
-
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('admin/post/list')->with('message','Delete Post Succes');
+    }
+    public function getBlock($idPost)
+    {
+        $post= Post::findOrFail($idPost);
+        $post->active=!($post->active);
+        $post->save();
+        
     }
 }

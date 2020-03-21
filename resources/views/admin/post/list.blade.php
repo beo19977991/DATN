@@ -43,12 +43,16 @@
 
                                 <td class="center">
                                 <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
+                                    <input class="switchblock" type="checkbox"  idpost="{{$p->id}}" 
+                                    @if($p->active==0)
+                                    {{"checked"}}
+                                    @endif
+                                    />
+                                    <span class="slider round"></span>
                                 </label>
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -56,4 +60,19 @@
             </div>
             <!-- /.container-fluid -->
         </div>
+@endsection
+@section('ajax')
+    <script>
+        $(document).ready(function(){
+        //    $('.switch').on('change', () => console.log($(this).is(":checked")))
+           $('.switchblock').on('change',function(){
+                var idPost = $(this).attr("idpost");
+                $.ajax({url:"admin/ajax/post/"+idPost, success:function(data){
+                    $('.switchblock').html(data);
+                    console.log("admin/ajax/post/"+idPost);
+                }});
+           });
+        });
+    </script>
+
 @endsection

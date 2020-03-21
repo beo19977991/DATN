@@ -129,6 +129,7 @@ input:checked + .slider:before {
     </script>
 
     @yield('script')
+    @yield('ajax')
 </body>
 
 </html>
