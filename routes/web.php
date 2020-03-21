@@ -93,7 +93,15 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
         
     });
     Route::group(['prefix' => 'exercise'], function () {
-        
+        Route::get('list','ExerciseController@getList');
+
+        Route::get('edit/{id}','ExerciseController@getEdit');
+        Route::post('edit/{id}','ExerciseController@postEdit');
+
+        Route::get('add','ExerciseController@getAdd');
+        Route::post('add','ExerciseController@postAdd');
+
+        Route::get('delete/{id}','ExerciseController@getDelete');
     });
     Route::group(['prefix' => 'course'], function () {
         
