@@ -76,6 +76,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="admin/type-exercise/list"><i class="fa fa-bar-chart-o fa-fw"></i>Type Exercise<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/type-exercise/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/type-exercise/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
