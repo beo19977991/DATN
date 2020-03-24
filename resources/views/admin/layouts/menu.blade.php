@@ -88,6 +88,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="admin/course/list"><i class="fa fa-bar-chart-o fa-fw"></i>Course<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/course/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/course/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
