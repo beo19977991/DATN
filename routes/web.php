@@ -104,7 +104,15 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
         Route::get('delete/{id}','ExerciseController@getDelete');
     });
     Route::group(['prefix' => 'course'], function () {
-        
+        Route::get('list','CourseController@getList');
+
+        Route::get('edit/{id}','CourseController@getEdit');
+        Route::post('edit/{id}','CourseController@postEdit');
+
+        Route::get('add','CourseController@getAdd');
+        Route::post('add','CourseController@postAdd');
+
+        Route::get('delete/{id}','CourseController@getDelete');
     });
     Route::group(['prefix' => 'product'], function () {
         
