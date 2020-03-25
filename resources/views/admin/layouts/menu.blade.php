@@ -100,6 +100,30 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="admin/type-product/list"><i class="fa fa-bar-chart-o fa-fw"></i>Type Product<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/type-product/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/type-product/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="admin/product/list"><i class="fa fa-bar-chart-o fa-fw"></i>Product<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/product/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/product/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

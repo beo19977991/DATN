@@ -36,7 +36,7 @@
                                 <td>{{$p->title}}</td>
                                 <td>{{$p->preview}}</td>
                                 <td>{{$p->body}}</td>
-                                <td>{{$p->photo}}</td>
+                                <td><img style="width:150px;height:100px" src="upload/post/photo/{{$p->photo}}"></td>
                                 <td>{{$p->likes}}</td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
                                 <a href="admin/post/delete/{{$p->id}}"> Delete</a></td>

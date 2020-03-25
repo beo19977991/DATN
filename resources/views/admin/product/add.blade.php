@@ -4,8 +4,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Exercise
-                            <small>Edit</small>
+                        <h1 class="page-header">Product
+                            <small>Add</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -22,35 +22,34 @@
                         </div>
                     @endif
                     <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="admin/exercise/edit/{{$exercise->id}}" method="POST" enctype="multipart/form-data" >
+                        <form action="admin/product/add" method="POST" enctype="multipart/form-data" >
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <label>Type Exercise</label>
-                                <select class="form-control" name="typeExercise" id="typeExercise">
-                                @foreach($typeExercise as $type)
-                                <option
-                                    @if($exercise->typeExercise->id== $type->id)
-                                    {{"selected"}}
-                                    @endif
-                                 value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
+                                <label>Type Product</label>
+                                <select class="form-control" name="typeProduct" id="typeProduct">
+                                @foreach($typeProduct as $type)
+                                <option value="{{$type->id}}"> {{$type->typeProductName}}</option>
                                 @endforeach
                                 </select>
 
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
-                                <input class="form-control" name="title" value="{{$exercise->title}}" />
+                                <label>Product Name</label>
+                                <input class="form-control" name="product_name" />
                             </div>
                             <div class="form-group">
                                 <label>Preview</label>
-                                <textarea class="form-control" name="preview" >{{$exercise->preview}}</textarea>
+                                <textarea class="form-control" name="preview" ></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Video</label>
-                                <input class="form-control" type="file" name="video" />
-                                <video src="upload/exercise/video/{{$exercise->video}}" controls style="width:300px;height:150px"></video>
+                                <label>Photo</label>
+                                <input class="form-control" type="file" name="photo" />
                             </div>
-                            <button type="submit" class="btn btn-default">Edit</button>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input class="form-control" name="price" />
+                            </div>
+                            <button type="submit" class="btn btn-default">Add</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>
                     </div>
@@ -59,16 +58,4 @@
             </div>
             <!-- /.container-fluid -->
         </div>
-@endsection
-@section('script')
-<script>
-    $(document).ready(function(){
-        $("#typeExercise").change(function(){
-            var idTypeExercise= $(this).val();
-            $.get("admin/ajax/typeexercise"+idTypeExercise, function(data){
-                $("#typeExercise").html(data);
-            })
-        });
-    });
-</script>
 @endsection

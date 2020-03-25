@@ -38,7 +38,7 @@
                                 <td>{{$u->email}}</td>
                                 <td>{{$u->phone}}</td>
                                 <td>{{$u->address}}</td>
-                                <td>{{$u->photo}}</td>
+                                <td><img style="width:150px;height:100px" src="upload/user/photo/{{$u->photo}}"></td>
                                 <td>
                                 @if($u->role ==0)
                                 {{"Admin"}}

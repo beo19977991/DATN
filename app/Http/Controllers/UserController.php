@@ -82,12 +82,12 @@ class UserController extends Controller
             }
             $name = $file->getClientOriginalName();
             $photo = Str::random(4)."_".$name;
-            while(file_exists("upload/photo".$photo))
+            while(file_exists("upload/user/photo".$photo))
             {
                 $photo = Str::random(4)."_".$name;
             }
-            $file->move("upload/photo",$photo);
-            unlink("upload/photo".$user->photo);
+            $file->move("upload/user/photo",$photo);
+            unlink("upload/user/photo".$user->photo);
             $user->photo=$photo;
         }
         $user->save();
@@ -140,11 +140,11 @@ class UserController extends Controller
             }
             $name = $file->getClientOriginalName();
             $photo = Str::random(4)."_".$name;
-            while(file_exists("upload/photo".$photo))
+            while(file_exists("upload/user/photo".$photo))
             {
                 $photo = Str::random(4)."_".$name;
             }
-            $file->move("upload/photo",$photo);
+            $file->move("upload/user/photo",$photo);
             $user->photo=$photo;
         }
         else

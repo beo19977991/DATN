@@ -46,11 +46,11 @@ class ExerciseController extends Controller
             }
             $name = $file->getClientOriginalName();
             $video = Str::random(4)."_".$name;
-            while(file_exists("upload/video".$video))
+            while(file_exists("upload/exercise/video".$video))
             {
                 $video = Str::random(4)."_".$name;
             }
-            $file->move("upload/video",$video);
+            $file->move("upload/exercise/video",$video);
             $exercise->video=$video;
         }
         else
@@ -91,12 +91,12 @@ class ExerciseController extends Controller
             }
             $name = $file->getClientOriginalName();
             $video = Str::random(4)."_".$name;
-            while(file_exists("upload/video".$video))
+            while(file_exists("upload/exercise/video".$video))
             {
                 $video = Str::random(4)."_".$name;
             }
-            $file->move("upload/video",$video);
-            unlink("upload/video".$exercise->video);
+            $file->move("upload/exercise/video",$video);
+            unlink("upload/exercise/video".$exercise->video);
             $exercise->video=$video;
         }
         $exercise->save();

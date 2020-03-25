@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Exercis
+                        <h1 class="page-header">Product
                             <small>List</small>
                         </h1>
                     </div>
@@ -18,30 +18,31 @@
                         <thead>
                             <tr align="center">
                                 <th> ID</th>
-                                <th> Trainer</th>
-                                <th> Type Exercise</th>
-                                <th> Title</th>
+                                <th> Product Type</th>
+                                <th> Product Name</th>
                                 <th> Preview</th>
-                                <th> Video</th>
+                                <th> Photo</th>
+                                <th> Price</th>
                                 <th> Delete</th>
-                                <th> Edit</th>
+                                <th> Block</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($exercise as $ex)
+                        @foreach($product as $p)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$ex->id}}</td>
-                                <td>{{$ex->user->username}}</td>
-                                <td>{{$ex->typeExercise->typeExerciseName}}</td>
-                                <td>{{$ex->title}}</td>
-                                <td>{{$ex->preview}}</td>
-                                <td><video src="upload/exercise/video/{{$ex->video}}" controls style="width:150px;height:100px"></video></td>
+                                <td>{{$p->id}}</td>
+                                <td>{{$p->typeProduct->typeProductName}}</td>
+                                <td>{{$p->productName}}</td>
+                                <td>{{$p->preview}}</td>
+                                <!-- <td>{{$p->photo}}</td> -->
+                                <td><img style="width:150px;height:100px" src="upload/product/{{$p->photo}}"></td>
+                                <td>{{$p->price}}</td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                <a href="admin/exercise/delete/{{$ex->id}}"> Delete</a></td>
+                                <a href="admin/product/delete/{{$p->id}}"> Delete</a></td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> 
-                                <a href="admin/exercise/edit/{{$ex->id}}">Edit</a></td>
+                                <a href="admin/product/edit/{{$p->id}}">Edit</a></td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

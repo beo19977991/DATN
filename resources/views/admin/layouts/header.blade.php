@@ -15,7 +15,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         @if(isset($user_login))
-                            <img src="upload/photo/{{$user_login->photo}}" style="width:30px; height:30px;boder:solid 5px black; border-radius:50%">
+                            <img src="upload/user/photo/{{$user_login->photo}}" style="width:30px; height:30px;boder:solid 5px black; border-radius:50%">
                         @endif
                         <i class="fa fa-caret-down"></i>
                     </a>
