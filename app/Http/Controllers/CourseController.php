@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\User;
 use Auth;
 
 class CourseController extends Controller
@@ -31,7 +32,7 @@ class CourseController extends Controller
             'discount.required'=>'You have not enter Discount',
         ]);
         $course = new Course;
-        $course->idUser= Auth::user()->id;
+        $course->idUser= (Auth::user()->id);
         $course->courseName=$request->course_name;
         $course->time=$request->time;
         $course->price=$request->price;
@@ -60,13 +61,13 @@ class CourseController extends Controller
         ]);
 
         $course = Course::find($id);
-        $course->idUser= Auth::user()->id;
+        $course->idUser= (Auth::user()->id);
         $course->courseName=$request->course_name;
         $course->time=$request->time;
         $course->price=$request->price;
         $course->discount=$request->discount;
         $course->save();
-        return redirect('admin/course/edit'.$id)->with('message','Edit Course Success');
+       return redirect('admin/course/edit/'.$id)->with('message','Edit Course Success');
     }
     public function getDelete($id)
     {
