@@ -139,6 +139,17 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
         Route::get('delete/{id}','TypeProductController@getDelete');
     });
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('list','ProductController@getList');
+
+        Route::get('edit/{id}','ProductController@getEdit');
+        Route::post('edit/{id}','ProductController@postEdit');
+
+        Route::get('add','ProductController@getAdd');
+        Route::post('add','ProductController@postAdd');
+
+        Route::get('delete/{id}','ProductController@getDelete');
+    });
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('post/{idPost}','PostController@getBlock');
     });
