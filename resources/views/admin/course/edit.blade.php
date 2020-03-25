@@ -22,8 +22,8 @@
                         </div>
                     @endif
                     <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="admin/course/edit/{$course->id}" method="POST" enctype="multipart/form-data" >
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <form action="admin/course/edit/{{$course->id}}" method="POST" enctype="multipart/form-data" >
+                        <input type="hidden" name="_token" value="{{csrf_token()}}"> 
                             <div class="form-group">
                                 <label>Course Name</label>
                                 <input class="form-control" name="course_name" value="{{$course->courseName}}" />

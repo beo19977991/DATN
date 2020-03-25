@@ -35,7 +35,7 @@ class TypeExerciseController extends Controller
         return view('admin.type-exercise.edit',['typeExercise'=>$typeExercise]);
     }
     public function postEdit(Request $request, $id)
-    {
+    {    
         $this->validate($request,[
             'type_exercise'=>'required',
         ],[
