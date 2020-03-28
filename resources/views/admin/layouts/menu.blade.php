@@ -52,6 +52,18 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="admin/type-schedule/list"><i class="fa fa-bar-chart-o fa-fw"></i>Type Schedule<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/type-schedule/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/type-schedule/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="admin/schedule/list"><i class="fa fa-bar-chart-o fa-fw"></i>Schedule<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
