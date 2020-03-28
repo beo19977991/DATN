@@ -114,9 +114,6 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
         Route::get('delete/{id}','CourseController@getDelete');
     });
-    Route::group(['prefix' => 'product'], function () {
-        
-    });
     Route::group(['prefix' => 'type-exercise'], function () {
         Route::get('list','TypeExerciseController@getList');
 
@@ -149,6 +146,17 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
         Route::post('add','ProductController@postAdd');
 
         Route::get('delete/{id}','ProductController@getDelete');
+    });
+    Route::group(['prefix' => 'type-schedule'], function () {
+        Route::get('list','TypeScheduleController@getList');
+
+        Route::get('edit/{id}','TypeScheduleController@getEdit');
+        Route::post('edit/{id}','TypeScheduleController@postEdit');
+
+        Route::get('add','TypeScheduleController@getAdd');
+        Route::post('add','TypeScheduleController@postAdd');
+
+        Route::get('delete/{id}','TypeScheduleController@getDelete');
     });
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('post/{idPost}','PostController@getBlock');
