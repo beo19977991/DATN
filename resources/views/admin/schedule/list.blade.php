@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Exercise
+                        <h1 class="page-header">Schedule
                             <small>List</small>
                         </h1>
                     </div>
@@ -19,29 +19,38 @@
                             <tr align="center">
                                 <th> ID</th>
                                 <th> Trainer</th>
-                                <th> Type Exercise</th>
-                                <th> Title</th>
-                                <th> Preview</th>
-                                <th> Video</th>
+                                <th> Type Of Schedule</th>
+                                <th> Monday</th>
+                                <th> Tuesday</th>
+                                <th> Wednesday</th>
+                                <th> Thursday</th>
+                                <th> Friday</th>
+                                <th> Saturday</th>
+                                <th> Sunday</th>
                                 <th> Delete</th>
                                 <th> Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($exercise as $ex)
+                        @foreach($schedule as $s)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$ex->id}}</td>
-                                <td>{{$ex->user->username}}</td>
-                                <td>{{$ex->typeExercise->typeExerciseName}}</td>
-                                <td>{{$ex->title}}</td>
-                                <td>{{$ex->preview}}</td>
-                                <td><video src="upload/exercise/video/{{$ex->video}}" controls style="width:150px;height:100px"></video></td>
+                                <td>{{$s->id}}</td>
+                                <td>{{$s->user->username}}</td>
+                                <td>{{$s->typeSchedule->typeOfScheduleName}}</td>
+                                @for($i=0;$i<'7';$i++)
+                                <td>
+                                    @foreach($s->body[$i] as $sch)
+                                        {{$sch}}
+                                    @endforeach  
+                                </td>
+                                @endfor
+
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                <a href="admin/exercise/delete/{{$ex->id}}"> Delete</a></td>
+                                <a href="admin/schedule/delete/{{$s->id}}"> Delete</a></td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> 
-                                <a href="admin/exercise/edit/{{$ex->id}}">Edit</a></td>
-                            </tr>
-                            @endforeach
+                                <a href="admin/schedule/edit/{{$s->id}}">Edit</a></td>
+                            </tr> 
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

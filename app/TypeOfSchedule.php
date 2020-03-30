@@ -11,4 +11,8 @@ class TypeOfSchedule extends Model
     protected $fillable=[
         'tyOfScheduleName',
     ];
+    public function schedule()
+    {
+        return $this->hasMany('App\Schedule','idTypeSchedule','id');
+    }
 }
