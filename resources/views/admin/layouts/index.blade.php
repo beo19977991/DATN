@@ -86,6 +86,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.schedule{
+  width:33.3333%;
+}
 </style>
 </head>
 

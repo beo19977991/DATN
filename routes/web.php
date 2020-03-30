@@ -90,7 +90,15 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
     });
     Route::group(['prefix' => 'schedule'], function () {
-        
+        Route::get('list','ScheduleController@getList');
+
+        Route::get('edit/{id}','ScheduleController@getEdit');
+        Route::post('edit/{id}','ScheduleController@postEdit');
+
+        Route::get('add','ScheduleController@getAdd');
+        Route::post('add','ScheduleController@postAdd');
+
+        Route::get('delete/{id}','ScheduleController@getDelete');
     });
     Route::group(['prefix' => 'exercise'], function () {
         Route::get('list','ExerciseController@getList');
