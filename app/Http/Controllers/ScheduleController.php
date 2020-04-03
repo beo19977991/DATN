@@ -59,6 +59,8 @@ class ScheduleController extends Controller
     }
     public function getDelete($id)
     {
-
+        $schedule = Schedule::find($id);
+        $schedule->delete();
+        return redirect('admin/schedule/list')->with('message','Delete Schedule Success');
     }
 }
