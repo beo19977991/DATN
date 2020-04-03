@@ -57,14 +57,6 @@ class ScheduleController extends Controller
         $schedule->save();
         return redirect('admin/schedule/add')->with('message','Success');
     }
-    public function getEdit($id)
-    {
-
-    }
-    public function postEdit(Request $request, $id)
-    {
-
-    }
     public function getDelete($id)
     {
 

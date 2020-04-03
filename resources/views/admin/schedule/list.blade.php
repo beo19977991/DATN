@@ -28,7 +28,6 @@
                                 <th> Saturday</th>
                                 <th> Sunday</th>
                                 <th> Delete</th>
-                                <th> Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,8 +46,6 @@
 
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
                                 <a href="admin/schedule/delete/{{$s->id}}"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> 
-                                <a href="admin/schedule/edit/{{$s->id}}">Edit</a></td>
                             </tr> 
                         @endforeach
                         </tbody>
