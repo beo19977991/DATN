@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Schedule;
 use App\TypeExercise;
 use App\TypeOfSchedule;
+use Illuminate\Support\Collection;
 use Auth;
 
 class ScheduleController extends Controller
@@ -38,15 +39,23 @@ class ScheduleController extends Controller
             }
             $schedule[$index]->body = $ar;
         }
-        return view('admin.schedule.add',['schedule'=>$schedule,'typeSchedule'=>$typeSchedule,'typeExercise'=>$typeExercise]);
+        $data = Collection::make(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+        return view('admin.schedule.add',['schedule'=>$schedule,'typeSchedule'=>$typeSchedule,'typeExercise'=>$typeExercise,'data'=>$data]);
     }
     public function postAdd(Request $request)
     {
         $schedule = new Schedule;
         $schedule->idUser = Auth::user()->id;
         $schedule->idTypeSchedule=$request->typeSchedule;
-        //$schedule->body=$request->
-        // $arrSub= 
+        $items= $request->selectItem;
+        $arr =[];
+        foreach($items as $i =>$value)
+        {
+            array_push($arr, array_map('intval', $value));
+        }
+        $schedule->body= $arr;
+        $schedule->save();
+        return redirect('admin/schedule/add')->with('message','Success');
     }
     public function getEdit($id)
     {
