@@ -33,144 +33,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Monday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
+                                    @foreach($data as $item)
+                                    
+                                    <label>{{$item}}</label>
+                                            <div>
+                                                <select id="{{$item}}" class="{{$item}}" style="width:50%" class="browser-default custom-select" multiple name="selectItem[{{$item}}][]">
+                                                    @foreach($typeExercise as $type)
+                                                    <option  value="{{$type->id}}">{{$type->typeExerciseName}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                     @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Tuesday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Wednesday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Thursday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Friday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Saturday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Sunday</label>
-                                <div style="display:flex">
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                    <select class="form-control schedule" name="typeExercise" id="typeExercise">
-                                    @foreach($typeExercise as $type)
-                                        <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
                             </div>
                             <button type="submit" class="btn btn-default">Add</button>
                             <button type="reset" class="btn btn-default">Reset</button>
@@ -181,4 +54,18 @@
             </div>
             <!-- /.container-fluid -->
         </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('.monday').select2();
+            $('.tuesday').select2();
+            $('.wednesday').select2();
+            $('.thursday').select2();
+            $('.friday').select2();
+            $('.saturday').select2();
+            $('.sunday').select2();
+        });
+    </script>
 @endsection
