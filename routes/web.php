@@ -12,9 +12,9 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
+Route::get('/home', 'HomeController@getHome')->name('home');
+
+
 Route::get('trainer',function(){
     return view('trainer');
 });
@@ -91,9 +91,6 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
     });
     Route::group(['prefix' => 'schedule'], function () {
         Route::get('list','ScheduleController@getList');
-
-        Route::get('edit/{id}','ScheduleController@getEdit');
-        Route::post('edit/{id}','ScheduleController@postEdit');
 
         Route::get('add','ScheduleController@getAdd');
         Route::post('add','ScheduleController@postAdd');

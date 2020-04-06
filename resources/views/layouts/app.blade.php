@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="logo-area">
-                                <a href="#"><img src="{!! asset('img/logo.png')!!} " alt="logo"></a>
+                                <a href="/home"><img src="{!! asset('img/logo.png')!!} "></a>
                             </div>
                         </div>
                         <!-- start menu -->
@@ -80,63 +80,28 @@
                         <!-- end menu -->
                         <div class="col-lg-1 col-md-1 hidden-sm">
                             <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <div class="header-top-search search-box">
-                                            <form>
-                                                <input class="search-text" type="text" placeholder="Search Here...">
-                                                <a class="search-button" href="#">
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="cart-area floatright">
-                                            <i class="fa fa-shopping-cart"></i><span>2</span>
+                                <ul >
+                                    <!-- /.dropdown -->
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            @if(isset($user_login))
+                                                <img src="upload/user/photo/{{$user_login->photo}}" style="width:30px; height:30px;boder:solid 5px black; border-radius:50%">
+                                            @endif
+                                            <i class="fa fa-caret-down"></i>
                                         </a>
-                                        <ul>
-                                            <li>
-                                                <div class="cart-single-product">
-                                                    <div class="media">
-                                                        <div class="pull-left cart-product-img">
-                                                            <a href="#">
-                                                                <img class="media-object" src="{!!asset('img/product/cart-img.png')!!}" alt="product">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body cart-content">
-                                                            <h4 class="media-heading"><a href="#">Product Title Here</a></h4>
-                                                            <a href="#" class="trash"><i class="fa fa-trash-o"></i></a>
-                                                            <p>Quantity : 1</p>
-                                                            <div class="cart-product-price">
-                                                                <a href="#">$49</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-single-product">
-                                                    <div class="media">
-                                                        <div class="pull-left cart-product-img">
-                                                            <a href="#">
-                                                                <img class="media-object" src="{!! asset('img/product/cart-img.png')!!}" alt="product">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body cart-content">
-                                                            <h4 class="media-heading"><a href="#">Product Title Here</a></h4>
-                                                            <a href="#" class="trash"><i class="fa fa-trash-o"></i></a>
-                                                            <p>Quantity : 1</p>
-                                                            <div class="cart-product-price">
-                                                                <a href="#">$99</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li><a href="http://www.radiustheme.com/demo/html/gymedge/multi-page/checkout.html" class="checkout-button">Checkout</a></li>
-                                        </ul>
+                                            <ul class="dropdown-menu dropdown-user">
+                                                @if(isset($user_login))
+                                                    <li>
+                                                        <a href="admin/user/edit/{{$user_login->id}}"><i class="fa fa-user fa-fw"></i>{{$user_login->username}}</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                            <!-- /.dropdown-user -->
                                     </li>
+                                        <!-- /.dropdown -->
                                 </ul>
                             </div>
                         </div>

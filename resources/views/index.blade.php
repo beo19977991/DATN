@@ -19,7 +19,7 @@
                             <div data-wow-delay="0.1s" data-wow-duration="1s" class="tp-caption big-title rs-title customin customout bg-sld-cp-primary ">Build <span>Your</span> Body <span>Strong</span>
                             </div>
                             <div data-wow-delay="0.2s" data-wow-duration="2s" class="tp-caption small-content customin customout rs-title-small bg-sld-cp-primary tp-resizeme rs-parallaxlevel-0 ">
-                                Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the idustry's standard type specimen book. It has survived not only five centuries, bu
+                            Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway 
                             </div>
                             <div class="button">
                                 <a href="#" class="btn custom-button" data-title="Join With Us">Join With Us</a>
@@ -37,11 +37,14 @@
                     <div class="about-left-img padding-space">
                         <img src="img/about-fitness-img.png" alt="about-fitness-img">
                         <div class="overly">
-                            <h3>All <span>About</span><br>Fitness</h3>
+                            <h3>All <span>About</span><br>GymStar</h3>
                         </div>
                     </div>
                 </div>
+
                 <div class="about-fitness-right padding-space">
+                <!-- type of schedule start -->
+                @foreach($typeSchedule as $type)
                     <div class="about-single-service">
                         <div class="media service-item">
                             <div class="pull-left service-image">
@@ -50,38 +53,15 @@
                                 </a>
                             </div>
                             <div class="media-body service-content">
-                                <h3 class="media-heading"><a href="#">Wight Lifting</a></h3>
-                                <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummyy text of the printing and typesetting.</p>
+                                <h3 class="media-heading"><a href="#">{{$type->typeOfScheduleName}}</a></h3>
+                                <p>I don’t stop when i ‘m tired, I stop when i done</p>
+                                <p>Train like an athlete, eat like a nutritionist, sleep like a baby, win like a champion</p>
                             </div>
                         </div>
                     </div>
-                    <div class="about-single-service">
-                        <div class="media service-item">
-                            <div class="pull-left service-image">
-                                <a href="#">
-                                    <span class="flaticon-people"></span>
-                                </a>
-                            </div>
-                            <div class="media-body service-content">
-                                <h3 class="media-heading"><a href="#">Running</a></h3>
-                                <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummyy text of the printing and typesetting.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-single-service">
-                        <div class="media service-item last-item">
-                            <div class="pull-left service-image">
-                                <a href="#">
-                                    <span class="flaticon-exercise"></span>
-                                </a>
-                            </div>
-                            <div class="media-body service-content">
-                                <h3 class="media-heading"><a href="#">Yoga</a></h3>
-                                <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummyy text of the printing and typesetting.</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                <!-- end type of schedule -->
             </div>
         </div>
         <!-- End About fitness area -->
@@ -89,86 +69,26 @@
         <div class="feature-classes-area nav-on-hover">
             <div class="container">
                 <div class="section-title">
-                    <h2>Featured Classes</h2>
+                    <h2>NEW EXERCISE</h2>
                 </div>
             </div>
             <div class="container">
                 <div class="gym-carousel nav-control-top" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
-                    <div class="single-product-classes">
+                @foreach($exercise as $ex)
+                <div class="single-product-classes">
                         <div class="single-product">
-                            <a href="#"><img class="img-responsive" src="img/feature1.jpg" alt="product"></a>
-                            <div class="overly">
-                                <ul>
-                                    <li>16 Dec</li>
-                                    <li>06.AM</li>
-                                </ul>
-                            </div>
+                            <video class="img-responsive" controls>
+                                <source src="upload/exercise/video/{{$ex->video}}">
+                            </video>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-classes.html">Weight Lifting</a></h3>
-                            <span class="author"><i class="fa fa-user"></i>Jhon Carry</span>
+                            <h3><a href="#">{{$ex->typeExercise->typeExerciseName}}</a></h3>
+                            <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h4>
+                            
+                            <h3>{{$ex->preview}}</h4>
                         </div>
                     </div>
-                    <div class="single-product-classes">
-                        <div class="single-product">
-                            <a href="#"><img class="img-responsive" src="img/feature2.jpg" alt="product"></a>
-                            <div class="overly">
-                                <ul>
-                                    <li>16 Dec</li>
-                                    <li>06.AM</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-classes.html">Daily Yoga</a></h3>
-                            <span class="author"><i class="fa fa-user"></i>Jhon Carry</span>
-                        </div>
-                    </div>
-                    <div class="single-product-classes">
-                        <div class="single-product">
-                            <a href="#"><img class="img-responsive" src="img/feature3.jpg" alt="product"></a>
-                            <div class="overly">
-                                <ul>
-                                    <li>16 Dec</li>
-                                    <li>06.AM</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-classes.html">Running Way</a></h3>
-                            <span class="author"><i class="fa fa-user"></i>Jhon Carry</span>
-                        </div>
-                    </div>
-                    <div class="single-product-classes">
-                        <div class="single-product">
-                            <a href="#"><img class="img-responsive" src="img/feature4.jpg" alt="product"></a>
-                            <div class="overly">
-                                <ul>
-                                    <li>16 Dec</li>
-                                    <li>06.AM</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-classes.html">Free Hand</a></h3>
-                            <span class="author"><i class="fa fa-user"></i>Jhon Carry</span>
-                        </div>
-                    </div>
-                    <div class="single-product-classes">
-                        <div class="single-product">
-                            <a href="#"><img class="img-responsive" src="img/feature1.jpg" alt="product"></a>
-                            <div class="overly">
-                                <ul>
-                                    <li>16 Dec</li>
-                                    <li>06.AM</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-classes.html">Weight Lifting</a></h3>
-                            <span class="author"><i class="fa fa-user"></i>Jhon Carry</span>
-                        </div>
-                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
