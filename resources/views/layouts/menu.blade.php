@@ -51,7 +51,16 @@
                 </ul>
             </li>
             <li><a href="#">Contact</a></li>
-            <!-- <li><a href="#">{{$user_login}}</a></li> -->
+            <li>
+                <div class="header-top-search search-box">
+                    <form>
+                        <input class="search-text" type="text" placeholder="Search Here...">
+                            <a class="search-button" href="#">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                    </form>
+                </div>
+            </li>
             </ul>
         </nav>
     </div>

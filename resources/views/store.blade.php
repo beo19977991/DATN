@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+<title>GymStar| Store</title>
+@endsection
 @section('content')
 
             <!-- Start Inner Banner area -->

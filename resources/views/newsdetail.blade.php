@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+<title>GymStar| News Detail</title>
+@endsection
 @section('content')
             <!-- mobile-menu-area start -->
             <div class="mobile-menu-area">

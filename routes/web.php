@@ -12,9 +12,9 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
+Route::get('/home', 'HomeController@getHome')->name('home');
+
+
 Route::get('trainer',function(){
     return view('trainer');
 });
