@@ -135,194 +135,32 @@
                                 <li><a href="#sunday" data-toggle="tab">Sunday</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content class-schedule-tab">
-                                <div class="tab-pane fade in active" id="monday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
+                            @foreach($data as $key => $value)
+                                <div id="{{$value}}"
+                                @if($value === "monday")
+                                    class="tab-pane fade in active"
+                                @else
+                                    class="tab-pane fade"
+                                @endif
+                                >
+                                @foreach($schedule as $s)
+                                    @foreach($s->body[$key] as $k =>$v)
+                                    <ul
+                                    @if(($k%2)===0)
+                                            class="odd"
+                                        @else
+                                            class="even"
+                                        @endif    
+                                    >
+                                            <li>{{$v}}</li>
+                                            <li>{{$s->typeSchedule->typeOfScheduleName}}</li>
+                                            <li>{{$s->user->username}}</li>
+                                            <li><a href="#">Join Now!</a></li>
                                     </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Free Hand</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jessy Reo</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Weight Lifting</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Zara Keron</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Fitness</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jack Sparrow</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
+                                    @endforeach
+                                @endforeach
                                 </div>
-                                <div class="tab-pane fade" id="tuesday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Free Hand</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jessy Reo</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Weight Lifting</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Zara Keron</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="wednesday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Free Hand</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jessy Reo</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="thursday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Free Hand</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jessy Reo</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Weight Lifting</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Zara Keron</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="friday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="saturday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="sunday">
-                                    <ul class="odd">
-                                        <li>Yoga</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Robert Smith</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Running</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Petter john</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="odd">
-                                        <li>Gym</li>
-                                        <li>10.00 am - 12.00 pm</li>
-                                        <li>Kazi Fahim</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                    <ul class="even">
-                                        <li>Free Hand</li>
-                                        <li>09.00 am - 12.00 pm</li>
-                                        <li>Jessy Reo</li>
-                                        <li><a href="#">Join Now!</a></li>
-                                    </ul>
-                                </div>
+                            @endforeach
                             </div>
                         </div>
                     </div>
@@ -390,82 +228,29 @@
             </div>
             <div class="container">
                 <div class="gym-carousel nav-control-top" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
-                    <div class="single-trainer-item">
-                        <div class="trainer-item">
-                            <div class="trainer-img">
-                                <img src="img/trainers/trainer1.jpg" alt="trainer1">
-                                <div class="social-overly">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="trainer-overly">
-                                    <h3><a href="single-trainer.html">Jessica</a></h3>
-                                    <span class="builder">Body Builder</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-trainer-item">
-                        <div class="trainer-item">
-                            <div class="trainer-img">
-                                <img src="img/trainers/trainer2.jpg" alt="trainer2">
-                                <div class="social-overly">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="trainer-overly">
-                                    <h3><a href="single-trainer.html">Jecy Deoko</a></h3>
-                                    <span class="builder">Running Specialist</span>
+                    @foreach($trainer as $trainer)
+                    <div class="owl-item active" style="width:352.5px; margin-right:15px">
+                        <div class="single-trainer-item">
+                            <div class="trainer-item">
+                                <div class="trainer-img">
+                                    <img style="width:352.5px;height:450.41px" src="upload/user/photo/{{$trainer->photo}}" alt="#">
+                                    <div class="social-overly">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="trainer-overly">
+                                        <h3><a href="#">{{$trainer->username}}</a></h3>
+                                        <span class="builder">Body Builder</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="single-trainer-item">
-                        <div class="trainer-item">
-                            <div class="trainer-img">
-                                <img src="img/trainers/trainer3.jpg" alt="trainer3">
-                                <div class="social-overly">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="trainer-overly">
-                                    <h3><a href="single-trainer.html">John Smith</a></h3>
-                                    <span class="builder">Weight Lifting</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-trainer-item">
-                        <div class="trainer-item">
-                            <div class="trainer-img">
-                                <img src="img/trainers/trainer4.jpg" alt="trainer4">
-                                <div class="social-overly">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="trainer-overly">
-                                    <h3><a href="single-trainer.html">Stephen</a></h3>
-                                    <span class="builder">Body Builder</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -474,53 +259,22 @@
         <div class="price-table-area">
             <div class="container">
                 <div class="section-title">
-                    <h2>Our Pricing Table</h2>
+                    <h2>Our Course</h2>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hvr-float-shadow">
-                        <div class="price-table-box">
-                            <span>Standard</span>
-                            <h3>$99<span>/month</span></h3>
-                            <ul>
-                                <li>Free Hand</li>
-                                <li>Gym Fitness</li>
-                                <li>Running</li>
-                                <li>-------</li>
-                                <li>-------</li>
-                            </ul>
-                            <a class="custom-button" data-title="Become A Member" href="#">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hvr-float-shadow">
-                        <div class="price-table-box">
-                            <span>Premium</span>
-                            <h3>$199<span>/month</span></h3>
-                            <ul>
-                                <li>Free Hand</li>
-                                <li>Gym Fitness</li>
-                                <li>Running</li>
-                                <li>Yoga</li>
-                                <li>-------</li>
-                            </ul>
-                            <a class="custom-button" data-title="Become A Member" href="#">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hvr-float-shadow">
-                        <div class="price-table-box">
-                            <span>Platinum</span>
-                            <h3>$299<span>/month</span></h3>
-                            <ul>
-                                <li>Free Hand</li>
-                                <li>Gym Fitness</li>
-                                <li>Running</li>
-                                <li>Yoga</li>
-                                <li>Body Building</li>
-                            </ul>
-                            <a class="custom-button" data-title="Become A Member" href="#">Details</a>
-                        </div>
-                    </div>
+                    @foreach($course as $course)
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hvr-float-shadow">
+                            <div class="price-table-box">
+                                <span>{{$course->courseName}}</span>
+                                <h3>{{$course->time}}</h3>
+                                <h4><span>Price:</span>{{$course->price}}.000 vnd</h4>
+                                <h3><span>Discount: </span>{{$course->discount}}%</h3>
+                                <a class="custom-button" data-title="Become A Member" href="#">Details</a>
+                            </div>
+                        </div>   
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -619,14 +373,16 @@
         <div class="online-store-area nav-on-hover">
             <div class="container">
                 <div class="section-title">
-                    <h2>Online Store</h2>
+                    <h2>Store</h2>
                 </div>
             </div>
             <div class="container">
                 <div class="gym-carousel nav-control-top nav-on-hover" data-loop="true" data-items="4" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="4" data-r-large-nav="true" data-r-large-dots="false">
+                    
+                    @foreach($product as $product)
                     <div class="single-product-store">
                         <div class="single-product">
-                            <a href="#"><img src="img/product/product1.png" alt="product"></a>
+                            <a href="#"><img src="upload/product/{{$product->photo}}" alt="#"></a>
                             <div class="overlay"></div>
                             <div class="product-info">
                                 <ul>
@@ -637,133 +393,14 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-product.html">Product Title Here</a></h3>
-                            <div class="review">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="uncolor"><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
+                            <h3><a href="#">{{$product->productName}}</a></h3>
+                            <h4><span>{{$product->typeProduct->typeProductName}}</span></h4>
                             <span class="regular-price">
-                                    <span class="product-price">$59.00</span>
+                                    <span class="product-price">{{$product->price}}.000 vnd</span>
                             </span>
                         </div>
                     </div>
-                    <div class="single-product-store">
-                        <div class="single-product">
-                            <a href="#"><img src="img/product/product2.png" alt="product"></a>
-                            <div class="overlay"></div>
-                            <div class="product-info">
-                                <ul>
-                                    <li><a href="#" title="Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="#" title="Whishlist"><i class="fa fa-heart-o"></i></a></li>
-                                    <li><a href="#" title="Campare"><i class="fa fa-compress"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Product Title Here</a></h3>
-                            <div class="review">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="uncolor"><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
-                            <span class="regular-price">
-                                    <span class="product-price">$59.00</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="single-product-store">
-                        <div class="single-product">
-                            <a href="#"><img src="img/product/product3.png" alt="product"></a>
-                            <div class="overlay"></div>
-                            <div class="product-info">
-                                <ul>
-                                    <li><a href="#" title="Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="#" title="Whishlist"><i class="fa fa-heart-o"></i></a></li>
-                                    <li><a href="#" title="Campare"><i class="fa fa-compress"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Product Title Here</a></h3>
-                            <div class="review">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="uncolor"><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
-                            <span class="regular-price">
-                                    <span class="product-price">$59.00</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="single-product-store">
-                        <div class="single-product">
-                            <a href="#"><img src="img/product/product4.png" alt="product"></a>
-                            <div class="overlay"></div>
-                            <div class="product-info">
-                                <ul>
-                                    <li><a href="#" title="Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="#" title="Whishlist"><i class="fa fa-heart-o"></i></a></li>
-                                    <li><a href="#" title="Campare"><i class="fa fa-compress"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Product Title Here</a></h3>
-                            <div class="review">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="uncolor"><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
-                            <span class="regular-price">
-                                    <span class="product-price">$59.00</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="single-product-store">
-                        <div class="single-product">
-                            <a href="#"><img src="img/product/product1.png" alt="product"></a>
-                            <div class="overlay"></div>
-                            <div class="product-info">
-                                <ul>
-                                    <li><a href="#" title="Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="#" title="Whishlist"><i class="fa fa-heart-o"></i></a></li>
-                                    <li><a href="#" title="Campare"><i class="fa fa-compress"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Product Title Here</a></h3>
-                            <div class="review">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="uncolor"><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                            </div>
-                            <span class="regular-price">
-                                    <span class="product-price">$59.00</span>
-                            </span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
