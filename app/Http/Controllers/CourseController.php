@@ -61,7 +61,7 @@ class CourseController extends Controller
         ]);
 
         $course = Course::find($id);
-        $course->idUser= (Auth::user()->id);
+        $course->idUser= Auth::user()->id;
         $course->courseName=$request->course_name;
         $course->time=$request->time;
         $course->price=$request->price;

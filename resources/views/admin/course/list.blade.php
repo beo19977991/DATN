@@ -18,8 +18,8 @@
                         <thead>
                             <tr align="center">
                                 <th> ID</th>
-                                <th> Staff Make Course</th>
                                 <th> Course Name</th>
+                                <th> Staff</th>
                                 <th> Time</th>
                                 <th> Price</th>
                                 <th> Discount</th>
@@ -30,9 +30,9 @@
                         <tbody>
                         @foreach($course as $c)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$c->id}}</td>
-                                <td>{{$c->user->username}}</td>
+                                <td>{{$c->id}}</td> 
                                 <td>{{$c->courseName}}</td>
+                                <td>{{$c->user->username}}</td>
                                 <td>{{$c->time}}</td>
                                 <td>{{$c->price}}</td>
                                 <td>{{$c->discount}}</td>
