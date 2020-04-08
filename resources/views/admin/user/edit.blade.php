@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Avatar</label>
-                                <p><img style ="width:400px; height:200px" src="upload/photo/{{$user->photo}}" ></p>
+                                <p><img style ="width:400px; height:200px" src="upload/user/photo/{{$user->photo}}" ></p>
                                 <input class="form-control" type="file" name="photo" />
                             </div>
                             <div class="form-group">

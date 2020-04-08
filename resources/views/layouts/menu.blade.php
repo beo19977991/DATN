@@ -2,20 +2,20 @@
     <div class="main-menu">
         <nav>
             <ul>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Classes</a>
+            <li class="{{Request::is('home*') ? 'active' : ''}}"><a href="home">Home</a></li>
+            <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="about">About</a></li>
+            <li class="{{Request::is('classes*') ? 'active' : ''}}"><a href="classes">Classes</a>
                 <ul>
                     <li><a href="#">Classes</a></li>
                     <li><a href="#">Single Classes</a></li>
                 </ul>
             </li>
-            <li><a href="#">Schedule</a></li>
-            <li><a href="#">Trainers</a></li>
-            <li><a href="#">News</a>
+            <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="schedule">Schedule</a></li>
+            <li class="{{Request::is('trainer*') ? 'active' : ''}}"><a href="trainer">Trainers</a></li>
+            <li class="{{Request::is('news*') ? 'active' : ''}}"><a href="news">News</a>
                 <ul>
                     <li><a href="#">News</a></li>
-                    <li><a href="#">News Details</a></li>
+                    <li><a href="news-detail">News Details</a></li>
                     <li class="#"><a href="#">Demo Menu</a>
                         <ul class="thired-level">
                             <li><a href="#">Demo Menu 1</a></li>
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#">Pages</a>
+            <li class="{{Request::is('pages*') ? 'active' : ''}}"><a href="pages">Pages</a>
                 <ul class="mega-menu-dropdown">
                     <li class="single-mega-menu">
                         <a href="#">Home</a>
@@ -50,7 +50,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#">Contact</a></li>
+            <li class="{{Request::is('contact*') ? 'active' : ''}}"><a href="contact">Contact</a></li>
             <li>
                 <div class="header-top-search search-box">
                     <form>

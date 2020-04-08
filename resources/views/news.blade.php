@@ -24,92 +24,8 @@
             <div class="news-page-area padding-space">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9 col-md-9 col-sm-9">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news1.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">Body Combat</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news2.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">Running  New Trend</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news3.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">How to Take Meditation</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news4.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">Weightlifting Fitness</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news5.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">Boxing Courses</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-news-page">
-                                    <div class="single-news">
-                                        <img src="img/news/news1.jpg" alt="">
-                                        <div class="date">20<br>Jan<br>2016</div>
-                                    </div>
-                                    <div class="news-content">
-                                        <h3><a href="single-news.html">Body Combat</a></h3>
-                                        <p>BodyCombat is the empowering cardio workout are where you are totally unleashed. This fiercely ...</p>
-                                        <a class="read-more" href="single-news.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pagination-area">
-                                 <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                </ul>
-                            </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9" id="tag_container">
+                            @include('news.data')
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="right-sidebar">
@@ -167,4 +83,52 @@
                 </div>
             </div>
             <!-- Start latest news area -->
+@endsection
+@section('ajax')
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $(window).on('hashchange', function() {
+            if (window.location.hash) {
+                var page = window.location.hash.replace('#', '');
+                if (page == Number.NaN || page <= 0) {
+                    return false;
+                }else{
+                    getData(page);
+                }
+            }
+        });
+        
+        $(document).ready(function()
+        {
+            $(document).on('click', '.pagination a',function(event)
+            {
+                event.preventDefault();
+    
+                $('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+    
+                var myurl = $(this).attr('href');
+                var page=$(this).attr('href').split('page=')[1];
+    
+                getData(page);
+            });
+    
+        });
+    
+        function getData(page){
+            $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                datatype: "html"
+            }).done(function(data){
+                $("#tag_container").empty().html(data);
+                location.hash = page;
+            }).fail(function(jqXHR, ajaxOptions, thrownError){
+                alert('No response from server');
+            });
+        }
+});
+</script>
 @endsection
