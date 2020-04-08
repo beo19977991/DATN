@@ -71,9 +71,6 @@
                             </fieldset>
                         </form>
                     </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7">
-                        <div id="googleMap" style="width:100%;height:485px;"></div>
-                    </div>
                 </div>
             </div>
         </div>

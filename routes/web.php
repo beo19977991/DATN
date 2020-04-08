@@ -12,58 +12,14 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/home', 'HomeController@getHome')->name('home');
-
-
-Route::get('trainer',function(){
-    return view('trainer');
-});
-Route::get('schedule', function () {
-    return view('schedule');
-});
-Route::get('about',function(){
-    return view('about');
-});
-Route::get('classes',function(){
-    return view('classes');
-});
-Route::get('news',function(){
-    return view('news');
-});
-Route::get('news-detail',function(){
-    return view('newsdetail');
-});
-Route::get('store',function(){
-    return view('store');
-});
-Route::get('error',function(){
-    return view('404');
-});
-Route::get('gallery',function(){
-    return view('gallery');
-});
-Route::get('trainer-detail',function(){
-    return view('trainerdetail');
-});
-Route::get('product-detail',function(){
-    return view('productdetail');
-});
-Route::get('classes-detail',function(){
-    return view('classesdetail');
-});
-Route::get('contact',function(){
-    return view('contact');
-});
-Route::get('error',function(){
-    return view('404');
-});
-
 View::composer(['*'],function($view)
 {
     $user_login=Auth::user();
     $view->with('user_login',$user_login);
 });
 
+Route::get('/home', 'HomeController@getHome')->name('home');
+Route::get('/news','NewsController@getListNews');
 
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');
