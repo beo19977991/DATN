@@ -8,7 +8,6 @@
     <meta name="author" content="">
     <title>GymStar| Admin</title>
     <base href="{{asset('')}}">
-
     <!-- Bootstrap Core CSS -->
     <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -114,10 +113,9 @@ input:checked + .slider:before {
     <script src="admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+    <script src="admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></scr
     <!-- Custom Theme JavaScript -->
-    <script src="admin_asset/dist/js/sb-admin-2.js"></script>
+    <script src="admin_asset/dist/js/sb-admin-2.js') }}"></script>
 
     <!-- DataTables JavaScript -->
     <script src="admin_asset/bower_components/dataTables/media/js/jquery.dataTables.min.js"></script>

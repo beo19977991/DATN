@@ -3,81 +3,24 @@
 <title>GymStar| News Detail</title>
 @endsection
 @section('content')
-            <!-- mobile-menu-area start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul>
-                                        <li><a href="#">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home 01</a></li>
-                                                <li><a href="index2.html">Home 02</a></li>
-                                                <li><a href="index3.html">Home 03</a></li>
-                                                <li><a href="index4.html">Home 04</a></li>
-                                                <li><a href="index5.html">Home 05</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="classes.html">Classes</a>
-                                            <ul>
-                                                <li><a href="single-classes.html">Single Classes</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="schedule.html">Schedule</a></li>
-                                        <li><a href="news.html">News</a>
-                                            <ul>
-                                                <li><a href="single-news.html">News Details</a></li>
-                                                <li class="has-child-menu"><a href="#">Demo Menu</a>
-                                                    <ul class="thired-level">
-                                                        <li><a href="#">Demo Menu 1</a></li>
-                                                        <li><a href="#">Demo Menu 2</a></li>
-                                                        <li><a href="#">Demo Menu 3</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="page.html">Pages</a>
-                                            <ul class="mega-menu-area">
-                                                <li><a href="trainer.html">Our Trainer</a></li>
-                                                <li><a href="single-trainer.html">Trainer Details</a></li>
-                                                <li><a href="gallery.html">Gallery</a></li>
-                                                <li><a href="store-grid.html">Store Grid View</a></li>
-                                                <li><a href="store-list.html">Store List View</a></li>
-                                                <li><a href="single-product.html">Single product</a></li>
-                                                <li><a href="404.html">404 Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
+    <!-- End Header area -->
+    <!-- Start Inner Banner area -->
+    <div class="inner-banner-area">
+        <div class="container">
+            <div class="row">
+                <div class="innter-title">
+                    <h2>News Details</h2>
+                </div>
+                <div class="breadcrum-area">
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">News</a></li>
+                        <li class="active">Details</li>
+                    </ul>
                 </div>
             </div>
-            <!-- mobile-menu-area end -->
-            </header>
-            <!-- End Header area -->
-            <!-- Start Inner Banner area -->
-            <div class="inner-banner-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="innter-title">
-                            <h2>News Details</h2>
-                        </div>
-                        <div class="breadcrum-area">
-                            <ul class="breadcrumb">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">News</a></li>
-                                <li class="active">Details</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
             <!-- End Inner Banner area -->
             <!-- Start details classes area -->
             <div class="news-detail-area padding-top">
@@ -87,84 +30,76 @@
                             <div class="single-news-detail">
                                 <div class="class-content">
                                     <div class="detail-img">
-                                        <img src="img/classes/class-detail-img.jpg" alt="detail-img">
+                                        <img src="upload/post/photo/{{$post->photo}}">
                                     </div>
                                     <div class="class-heading">
-                                        <h3>Running New Trend</h3>
+                                        <h3>{{$post->title}}</h3>
                                         <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>28 April, 2016</li>
-                                            <li><i class="fa fa-user" aria-hidden="true"></i>By Admin : <a href="#">John Smith</a></li>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$post->created_at->format('d M')}}, {{$post->created_at->format('Y')}}</li>
+                                            <li><i class="fa fa-user" aria-hidden="true"></i>By : <a href="#">{{" ".$post->user->username}}</a></li>
                                             <li><i class="fa fa-comments-o" aria-hidden="true"></i>Comments : <a href="#">01</a></li>
                                         </ul>
                                     </div>
                                     <div class="content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa cupidatat non proident.</p>
-                                        <blockquote class="PoliQuote pull-left">
-                                            We possess within us two minds. So far I have written ere  theronly of theewer conscious mind. within us two mind wewSo far I hheronly of theer conscious mind. within us two mind wewSo far I have only of Duis ntytonre conmind. within us two mind wew. .
-                                        </blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.Lorem ipsum dolor sit amet.</p>
+                                        <p>{!!$post->body!!}</p>                                        
                                     </div>
-                                    <div class="news-tag">
-                                        <h3>Tags</h3>
-                                        <p>builiding, construction, home, roof</p>
-                                    </div>
-                                    <div class="comment-section">
-                                        <h3>01 Comment</h3>
-                                        <div class="pull-left comment-image">
-                                            <img src="img/news/comment.jpg" alt="">
-                                        </div>
-                                        <div class="media-body comment-content">
-                                            <h4>Dr. Jessy Robot</h4>
-                                            <div class="date-time">February 20, 2016 @ 09:21</div>
-                                            <p>We possess within us two minds. So far I have written ere  theronly of theewer conscious mind. within us two mind wewDuis ntytonssre conwithin us two minds.</p>
-                                            <div class="reply">
-                                                <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <button class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
+                                            </div>
+                                            <div class="col-md-10" style="margin-left:-40px;">
+                                                <button type="button" class="btn btn-primary btn-sm comment" value="{{ $post->id }}"><i class="fa fa-comments"></i> Comment</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="leave-comment">
-                                        <h3>Leave Comment</h3>
-                                        <div class="comment-form">
-                                            <form class="form-horizontal">
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <!-- Text input-->
-                                                            <div class="form-group">
-                                                              <div class="col-md-12">
-                                                              <input id="textinput" name="textinput" placeholder="Namer*" class="form-control input-md" required="" type="text">
-
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <!-- Text input-->
-                                                            <div class="form-group">
-                                                              <div class="col-md-12">
-                                                              <input id="email" name="email" placeholder="E-mail*" class="form-control input-md" required="" type="text">
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <!-- Textarea -->
-                                                <div class="form-group">
-                                                  <div class="col-md-12">
-                                                    <textarea class="form-control" id="textarea" name="textarea">Message*</textarea>
-                                                  </div>
+                                    <div id="commentField_{{$post->id}}">
+                                    @foreach($comments as $comment)
+                                        <div class="comment-section">
+                                            <div class="pull-left comment-image" id="comment-image" photo="upload/user/photo/{{$comment->user->photo}}">
+                                                <img src="upload/user/photo/{{$comment->user->photo}}" alt="">
+                                            </div>
+                                            <div class="media-body comment-content">
+                                                <h4 id="username" user_name="{{$user_login->username}}">{{$comment->user->username}}</h4>
+                                                <div class="date-time">{{$comment->created_at->format('d M Y')}}</div>
+                                                <p>{{$comment->body}}</p>
+                                                <div class="reply">
+                                                    <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a>
                                                 </div>
-                                                <!-- Button -->
-                                                <div class="form-group">
-                                                  <div class="col-md-12">
-                                                    <button id="singlebutton" name="singlebutton" class="btn btn-default" data-title="Send Message">Send Message</button>
-                                                  </div>
-                                                </div>
-                                                </fieldset>
-                                            </form>
+                                            </div>
                                         </div>
+                                        @endforeach
+                                        @if(isset($user_login))
+                                        <div class="leave-comment">
+                                            <div id="comment_{{ $post->id }}">
+                                            </div>
+                                            <div class="comment-form" >
+                                                <form  class="form-horizontal" id="commentForm_{{$post->id}}">
+                                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                    <fieldset>
+                                                    <!-- Textarea -->
+                                                    <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <textarea class="form-control commenttext" id="commenttext" name="commenttext" data-id="{{$post->id}}" iduser= "{{$user_login->id}}"></textarea>
+                                                    </div>
+                                                    </div>
+                                                    <!-- Button -->
+                                                    <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <button type="button" id="submitcomment" class="submitcomment btn btn-default" value="{{$post->id}}">Send Message</button>
+                                                    </div>
+                                                    </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+                            <!-- end new sigle detail -->
                         </div>
+                        <!-- end col 9 -->
                         <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="right-sidebar">
                                 <div class="single-sidebar">
@@ -215,20 +150,78 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="single-sidebar sidebar-last">
-                                    <div class="join-us">
-                                        <img src="img/join-us.jpg" alt="">
-                                        <div class="join-content">
-                                            <div class="percent"><span>25%</span> off</div>
-                                            <p>Dsed do eiusmod tempor incididunt.</p>
-                                            <a class="custom-button" href="#" data-title="Join Us Now!">Join Us Now!</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- end row -->
                 </div>
+                <!-- end container -->
             </div>
             <!-- End details classes area -->
+@endsection
+@section('ajax')
+<script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function()
+     {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).on('click', '.comment', function(){
+                var id = $(this).val();
+                if($('#commentField_'+id).is(':visible')){
+                    $('#commentField_'+id).slideUp();
+                }
+                else{
+                    $('#commentField_'+id).slideDown();
+                    // getComment(id);
+                }
+            });
+            $('#submitcomment').on('click' , function(){
+                var id = $(this).val();
+                var commenttext= ($('#commenttext').val());
+                var user_id =$('#commenttext').attr("iduser");
+                var parent_id =1;
+                var url_photo= $('#comment-image').attr("photo");
+                var username = $('#username').attr("user_name");
+                if(commenttext==''){
+                    alert('Please write a Comment First!');
+                }
+                else{
+                    $(".comment-section").append('<div class="comment-section"><div class="pull-left comment-image"><img src="'+url_photo+'" alt=""></div><div class="media-body comment-content"><h4>'+username+'</h4> <div class="date-time">'+new Date()+'</div> <p>'+commenttext+'</p><div class="reply"> <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a></div></div></div>');
+                    
+                    $.ajax({
+                        type: 'POST',
+                        url: 'postcomment',
+                        data: {
+                            idUser: user_id,
+                            idPost: id,
+                            body: commenttext,
+                            idParent: parent_id,
+                            _token: "{{csrf_token()}}"
+                        },
+                        success: function(result){
+                            
+                            console.log(result);
+                            // getComment(id);
+                            // $('#commentForm_'+id)[0].reset();
+                        },
+                    });
+                }
+ 
+            });
+    });
+    // function getComment(id){
+    //     $.ajax({
+    //         url: 'getcomment',
+    //         data: {id:id},
+    //         success: function(data){
+    //             $('#comment_'+id).html(data); 
+    //         }
+    //     });
+    // }
+
+</script>
 @endsection

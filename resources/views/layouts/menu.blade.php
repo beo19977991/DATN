@@ -2,30 +2,18 @@
     <div class="main-menu">
         <nav>
             <ul>
-            <li class="{{Request::is('home*') ? 'active' : ''}}"><a href="home">Home</a></li>
-            <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="about">About</a></li>
-            <li class="{{Request::is('classes*') ? 'active' : ''}}"><a href="classes">Classes</a>
+            <li class="{{Request::is('home*') ? 'active' : ''}}"><a href="/home">Home</a></li>
+            <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="/about">About</a></li>
+            <li class="{{Request::is('classes*') ? 'active' : ''}}"><a href="/classes">Classes</a>
                 <ul>
                     <li><a href="#">Classes</a></li>
                     <li><a href="#">Single Classes</a></li>
                 </ul>
             </li>
-            <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="schedule">Schedule</a></li>
-            <li class="{{Request::is('trainer*') ? 'active' : ''}}"><a href="trainer">Trainers</a></li>
-            <li class="{{Request::is('news*') ? 'active' : ''}}"><a href="news">News</a>
-                <ul>
-                    <li><a href="#">News</a></li>
-                    <li><a href="news-detail">News Details</a></li>
-                    <li class="#"><a href="#">Demo Menu</a>
-                        <ul class="thired-level">
-                            <li><a href="#">Demo Menu 1</a></li>
-                            <li><a href="#">Demo Menu 2</a></li>
-                            <li><a href="#">Demo Menu 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{Request::is('pages*') ? 'active' : ''}}"><a href="pages">Pages</a>
+            <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="/schedule">Schedule</a></li>
+            <li class="{{Request::is('trainer*') ? 'active' : ''}}"><a href="/trainer">Trainers</a></li>
+            <li class="{{Request::is('news*') ? 'active' : ''}}"><a href="/news">News</a></li>
+            <li class="{{Request::is('pages*') ? 'active' : ''}}"><a href="/pages">Pages</a>
                 <ul class="mega-menu-dropdown">
                     <li class="single-mega-menu">
                         <a href="#">Home</a>

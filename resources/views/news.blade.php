@@ -25,7 +25,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-9" id="tag_container">
-                            @include('news.data')
+                            <section class="articles">
+                                @include('news.data')
+                            </section>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="right-sidebar">
@@ -85,50 +87,27 @@
             <!-- Start latest news area -->
 @endsection
 @section('ajax')
+<script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
 <script type="text/javascript">
+
     $(document).ready(function()
     {
-        $(window).on('hashchange', function() {
-            if (window.location.hash) {
-                var page = window.location.hash.replace('#', '');
-                if (page == Number.NaN || page <= 0) {
-                    return false;
-                }else{
-                    getData(page);
-                }
+        $('.tag_container').on('click', '.pagination a', function(e) {
+                e.preventDefault();
+                var url = $('#read-more').attr('href');
+                getArticles(url);
+                window.history.pushState("", "", url);
+            });
+
+            function getArticles(url) {
+                $.ajax({
+                    url : url
+                }).done(function (data) {
+                    $('.articles').html(data);
+                }).fail(function () {
+                    alert('Articles could not be loaded.');
+                });
             }
-        });
-        
-        $(document).ready(function()
-        {
-            $(document).on('click', '.pagination a',function(event)
-            {
-                event.preventDefault();
-    
-                $('li').removeClass('active');
-                $(this).parent('li').addClass('active');
-    
-                var myurl = $(this).attr('href');
-                var page=$(this).attr('href').split('page=')[1];
-    
-                getData(page);
-            });
-    
-        });
-    
-        function getData(page){
-            $.ajax(
-            {
-                url: '?page=' + page,
-                type: "get",
-                datatype: "html"
-            }).done(function(data){
-                $("#tag_container").empty().html(data);
-                location.hash = page;
-            }).fail(function(jqXHR, ajaxOptions, thrownError){
-                alert('No response from server');
-            });
-        }
-});
+    });
 </script>
 @endsection
