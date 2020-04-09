@@ -532,7 +532,6 @@
 
             }
 
-            console.log(topBarH);
 
             if (windowpos >= topBarH) {
 

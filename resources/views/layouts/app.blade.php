@@ -6,6 +6,8 @@
     <meta name="description" content="">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     @yield('title')
+
+    <base href="{{asset('')}}">
     <!-- favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{!!asset('img/favicon.ico')!!}">
@@ -116,6 +118,7 @@
 
         <!-- Start Content Area-->
             @yield('content')
+            @yield('ajax')
         <!-- end content -->
         <!-- Start footer Area -->
         <footer>
@@ -216,7 +219,7 @@
     <a href="#" class="scrollToTop"></a>
     <!-- jquery
     ============================================ -->
-    <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
     <!-- bootstrap JS
         ============================================ -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -247,16 +250,15 @@
     <!-- Wow JS
         ============================================ -->
     <script src="{{ asset('js/wow.min.js') }}"></script>
-    <!-- plugins JS
-        ============================================ -->
-    <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- main JS
         ============================================ -->
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
-    <!-- paginate -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- =========================================== -->
+    <!-- plugins JS
+        ============================================ -->
+    <script src="{{ asset('js/plugins.js') }}"></script>
+
+
 </body>
 </html>

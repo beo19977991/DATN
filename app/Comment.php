@@ -9,6 +9,9 @@ class Comment extends Model
     protected $table = "comments";
 
     protected $fillable = [
+        'idUSer',
+        'idPost',
+        'idParent',
         'body',
     ];
 
@@ -20,5 +23,13 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo('App\User','idUser','id');
+    }
+    public function comment()
+    {
+        return $this->hasMany('App\Comment', 'idParent');
+    }
+    public function childrenComment()
+    {
+        return $this->hasMany('App\comment', 'idParent')->with('childrenComment')->with('user');
     }
 }

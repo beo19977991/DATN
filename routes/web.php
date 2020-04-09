@@ -20,6 +20,8 @@ View::composer(['*'],function($view)
 
 Route::get('/home', 'HomeController@getHome')->name('home');
 Route::get('/news','NewsController@getListNews');
+Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
+Route::post('postcomment','CommentController@postComment')->name('postcomment');
 
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');

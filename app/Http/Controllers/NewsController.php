@@ -12,7 +12,7 @@ class NewsController extends Controller
         $posts = Post::orderBy('created_at','DESC')->paginate(4);
         if($request->ajax())
         {
-            return view('news.data',['posts'=>$posts]);
+            return view('news.data',['posts'=>$posts])->render();
         }
         return view('news',['posts'=>$posts]);
     }
