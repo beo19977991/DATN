@@ -14,7 +14,7 @@ class CommentController extends Controller
             $comment->idUser = $request->idUser;
             $comment->idPost = $request->idPost;
             $comment->idParent =$request->idParent;
-            $comment->body = $request->body;
+            $comment->body = $request->body;         
             
             $comment->save();
             return true;

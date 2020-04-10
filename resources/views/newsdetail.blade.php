@@ -35,9 +35,9 @@
                                     <div class="class-heading">
                                         <h3>{{$post->title}}</h3>
                                         <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$post->created_at->format('d M')}}, {{$post->created_at->format('Y')}}</li>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$post->created_at->format('d M Y')}}</li>
                                             <li><i class="fa fa-user" aria-hidden="true"></i>By : <a href="#">{{" ".$post->user->username}}</a></li>
-                                            <li><i class="fa fa-comments-o" aria-hidden="true"></i>Comments : <a href="#">01</a></li>
+                                            <li><i class="fa fa-comments-o" aria-hidden="true"></i>Comments : <a href="#">{{count($comments)}}</a></li>
                                         </ul>
                                     </div>
                                     <div class="content">
@@ -56,12 +56,12 @@
                                     <div id="commentField_{{$post->id}}">
                                     @foreach($comments as $comment)
                                         <div class="comment-section">
-                                            <div class="pull-left comment-image" id="comment-image" photo="upload/user/photo/{{$comment->user->photo}}">
+                                            <div class="pull-left comment-image" id="comment-image" photo="upload/user/photo/{{$user_login->photo}}">
                                                 <img src="upload/user/photo/{{$comment->user->photo}}" alt="">
                                             </div>
                                             <div class="media-body comment-content">
                                                 <h4 id="username" user_name="{{$user_login->username}}">{{$comment->user->username}}</h4>
-                                                <div class="date-time">{{$comment->created_at->format('d M Y')}}</div>
+                                                <div class="date-time">{{$comment->created_at->format('d M Y H:i')}}</div>
                                                 <p>{{$comment->body}}</p>
                                                 <div class="reply">
                                                     <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a>
@@ -180,17 +180,22 @@
                 }
             });
             $('#submitcomment').on('click' , function(){
+                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aau", "Sep", "Oct", "Nov", "Dec"];
                 var id = $(this).val();
                 var commenttext= ($('#commenttext').val());
                 var user_id =$('#commenttext').attr("iduser");
                 var parent_id =1;
                 var url_photo= $('#comment-image').attr("photo");
                 var username = $('#username').attr("user_name");
+                let current_datetime = new Date();
+                let formatted_date = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear();
+                let formated_time = current_datetime.getHours() + ":"+ current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+
                 if(commenttext==''){
                     alert('Please write a Comment First!');
                 }
                 else{
-                    $(".comment-section").append('<div class="comment-section"><div class="pull-left comment-image"><img src="'+url_photo+'" alt=""></div><div class="media-body comment-content"><h4>'+username+'</h4> <div class="date-time">'+new Date()+'</div> <p>'+commenttext+'</p><div class="reply"> <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a></div></div></div>');
+                    $(".comment-section").append('<div class="comment-section"><div class="pull-left comment-image"><img src="'+url_photo+'" alt=""></div><div class="media-body comment-content"><h4>'+username+'</h4> <div class="date-time">'+formatted_date+' '+formated_time+'</div> <p>'+commenttext+'</p><div class="reply"> <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a></div></div></div>');
                     
                     $.ajax({
                         type: 'POST',
@@ -203,25 +208,12 @@
                             _token: "{{csrf_token()}}"
                         },
                         success: function(result){
-                            
-                            console.log(result);
-                            // getComment(id);
-                            // $('#commentForm_'+id)[0].reset();
+
                         },
                     });
                 }
  
             });
     });
-    // function getComment(id){
-    //     $.ajax({
-    //         url: 'getcomment',
-    //         data: {id:id},
-    //         success: function(data){
-    //             $('#comment_'+id).html(data); 
-    //         }
-    //     });
-    // }
-
 </script>
 @endsection

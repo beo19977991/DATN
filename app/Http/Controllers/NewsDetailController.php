@@ -11,6 +11,7 @@ class NewsDetailController extends Controller
     {
 
         $comments = Comment::where('idPost', '=', $id)->get();
+
         $post = Post::find($id);
         return view('newsdetail',['post'=>$post, 'comments'=>$comments]);
     }
