@@ -43,13 +43,24 @@
                                     <div class="content">
                                         <p>{!!$post->body!!}</p>                                        
                                     </div>
-                                    <div class="panel-footer">
+                                    <div class="">
                                         <div class="row">
-                                            <div class="col-md-2">
-                                                <button class="btn btn-primary btn-sm"><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
+                                        @foreach($likes as $like)
+                                            <div class="col-md-2" >
+                                            @if($like->idUser === $user_login->id && $like->idPost === $post->id && $like->status === 1)
+                                                
+                                                <button class="btn btn-primary like" idlike="{{$like->id}}" ><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
+                                                <!-- </div> -->
+                                            @elseif($like->idUser === $user_login->id && $like->idPost === $post->id && $like->status === 0 || $like->idUser != $user_login->id)
+                                                <!-- <div class="col-md-2 unlike"> -->
+                                                <button class="btn btn-default  unlike" idunlike="{{$like->id}}"><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
+                                                
+                                            @endif
                                             </div>
+                                        @endforeach
+                                        
                                             <div class="col-md-10" style="margin-left:-40px;">
-                                                <button type="button" class="btn btn-primary btn-sm comment" value="{{ $post->id }}"><i class="fa fa-comments"></i> Comment</button>
+                                                <button type="button" class="btn btn-primary comment" value="{{ $post->id }}"><i class="fa fa-comments"></i> Comment</button>
                                             </div>
                                         </div>
                                     </div>
@@ -213,6 +224,48 @@
                     });
                 }
  
+            });
+            $('body').on('click', '.unlike', function () {
+                $(this).toggleClass("btn-primary");
+                var url ="like";
+                var postid =$('#submitcomment').val();
+                var unlike_id = $(this).attr("idunlike");
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    data:
+                    {
+                        post_id: postid,
+                        status: 1,
+                        unlikeid: unlike_id,
+                        _token: "{{csrf_token()}}"
+                    },
+                    success: function(result)
+                    {
+                        console.log("success");
+                    }
+                });
+            });
+            $('body').on('click', '.like', function () {
+                $(this).toggleClass("btn-default");
+                    var url ="unlike";
+                    var like_id = $(this).attr("idlike");
+                    var postid =$('#submitcomment').val();
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    data:
+                    {
+                        post_id: postid,
+                        status: 0,
+                        likeid: like_id,
+                        _token: "{{csrf_token()}}"
+                    },
+                    success: function(result)
+                    {
+                        console.log("success");
+                    }
+                });
             });
     });
 </script>
