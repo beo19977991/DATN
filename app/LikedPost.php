@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class LikedPost extends Model
 {
-    protected $table = "liked_post";
-
+    protected $table = "liked_posts";
+    protected $fillable =[
+        'idUser',
+        'idPost',
+        'status',
+    ];
 
     public function post()
     {

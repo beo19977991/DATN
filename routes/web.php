@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@getHome')->name('home');
 Route::get('/news','NewsController@getListNews');
 Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
+Route::post('like','NewsDetailController@likePost')->name('like');
+Route::post('unlike','NewsDetailController@unlikePost')->name('unlike');
 
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');

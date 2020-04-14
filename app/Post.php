@@ -19,7 +19,7 @@ class Post extends Model
 
     public function likePost()
     {
-        return $this->hasMany('App\LikePost','idPost','id');
+        return $this->hasMany('App\LikedPost','idPost','id');
     }
 
     public function comment()
