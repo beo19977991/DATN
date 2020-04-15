@@ -12,51 +12,44 @@ class NewsDetailController extends Controller
 {
     public function getNewsDetail($id)
     {
-
         $comments = Comment::where('idPost', '=', $id)->get();
-        $likes = LikedPost::where('idPost','=', $id)->where('idUser','=',Auth::user()->id)->get();
+        $like = LikedPost::where('idPost','=', $id)
+                            ->where('idUser','=', Auth::user()->id)
+                            ->first();//check exits!
+        // $status_like = $likes->status;
+        // dd($likes);
         $post = Post::find($id);
-        return view('newsdetail',['post'=>$post, 'comments'=>$comments,'likes'=>$likes]);
+        return view('newsdetail',['post'=>$post, 'comments'=>$comments,'like'=>$like]);
     }
     public function likePost(Request $request)
     {
+        $auth = Auth::user();
+        $likePost = LikedPost::where('idPost','=', $request->idPost)
+                                    ->where('idUser','=', $auth->id)
+                                    ->first();
         
-        $likes = LikedPost::all();
-        foreach($likes as $l)
+        if(is_null($likePost))
         {
-            if($l->id==$request->unlikeid)
-            {
-                $like = LikedPost::find($request->unlikeid);
-            }
-            else
-            {
-                $like = new LikedPost;
-            }
+            $like = new LikedPost;
+            $like->idUser = Auth::user()->id;
+            $like->idPost = $request->post_id;
+            $like->status = 1;
+            $like->save();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Liked!'
+            ],200);
         }
-        $like->idUser= Auth::user()->id;
-        $like->idPost=$request->post_id;
-        $like->status=$request->status;
-        $like->save();
-        return 1;
-    }
-    public function unlikePost(Request $request)
-    {
-        $likes = LikedPost::all();
-        foreach($likes as $l)
+        else
         {
-            if($l->id==$request->likeid)
-            {
-                $like = LikedPost::find($request->likeid);
-            }
-            else
-            {
-                $like = new LikedPost;
-            }
+            $currentStatus = $likePost->status;
+            $likePost->status = !$currentStatus;
+            $likePost->save();
+    
+            return response()->json([
+                'status' => !$currentStatus,
+                'message' => 'Update'
+            ],200);
         }
-        $like->idUser= Auth::user()->id;
-        $like->idPost=$request->post_id;
-        $like->status=$request->status;
-        $like->save();
-        return 1;
     }
 }
