@@ -23,7 +23,8 @@ Route::get('/news','NewsController@getListNews');
 Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
-
+Route::get('user/login','UserController@getLoginUser');
+Route::get('user/register','UserController@getRegisterUser');
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');
 Route::get('admin/logout','UserController@getLogoutAdmin');

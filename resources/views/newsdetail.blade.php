@@ -65,6 +65,8 @@
                                                 <p>{{$comment->body}}</p>
                                                 <div class="reply">
                                                     <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a>
+                                                    <i class="fa fa-edit" style="margin-left:15px" aria-hidden="true"></i><a href="#">Edit</a>
+                                                    <i class="fa fa-trash-o" style="margin-left:15px" aria-hidden="true"></i><a href="#">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
