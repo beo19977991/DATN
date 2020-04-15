@@ -195,4 +195,13 @@ class UserController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
+
+    public function getLoginUser()
+    {
+        return view('login');
+    }
+    public function getRegisterUser()
+    {
+        return view('register');
+    }
 }

@@ -16,8 +16,6 @@ class NewsDetailController extends Controller
         $like = LikedPost::where('idPost','=', $id)
                             ->where('idUser','=', Auth::user()->id)
                             ->first();//check exits!
-        // $status_like = $likes->status;
-        // dd($likes);
         $post = Post::find($id);
         return view('newsdetail',['post'=>$post, 'comments'=>$comments,'like'=>$like]);
     }
