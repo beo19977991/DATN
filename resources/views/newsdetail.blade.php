@@ -45,20 +45,9 @@
                                     </div>
                                     <div class="">
                                         <div class="row">
-                                        @foreach($likes as $like)
                                             <div class="col-md-2" >
-                                            @if($like->idUser === $user_login->id && $like->idPost === $post->id && $like->status === 1)
-                                                
-                                                <button class="btn btn-primary like" idlike="{{$like->id}}" ><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
-                                                <!-- </div> -->
-                                            @elseif($like->idUser === $user_login->id && $like->idPost === $post->id && $like->status === 0 || $like->idUser != $user_login->id)
-                                                <!-- <div class="col-md-2 unlike"> -->
-                                                <button class="btn btn-default  unlike" idunlike="{{$like->id}}"><i class="fa fa-thumbs-up"></i> <span>Like</span></button>
-                                                
-                                            @endif
+                                                <button class="btn btn-primary like" data-post-id="{{$post->id}}" ><i class="fa fa-thumbs-up"></i><span>{{$like->status == 0 ? 'Like' : 'Unlike'}}</span></button>
                                             </div>
-                                        @endforeach
-                                        
                                             <div class="col-md-10" style="margin-left:-40px;">
                                                 <button type="button" class="btn btn-primary comment" value="{{ $post->id }}"><i class="fa fa-comments"></i> Comment</button>
                                             </div>
@@ -225,45 +214,27 @@
                 }
  
             });
-            $('body').on('click', '.unlike', function () {
-                $(this).toggleClass("btn-primary");
-                var url ="like";
-                var postid =$('#submitcomment').val();
-                var unlike_id = $(this).attr("idunlike");
-                $.ajax({
-                    type:'POST',
-                    url: url,
-                    data:
-                    {
-                        post_id: postid,
-                        status: 1,
-                        unlikeid: unlike_id,
-                        _token: "{{csrf_token()}}"
-                    },
-                    success: function(result)
-                    {
-                        console.log("success");
-                    }
-                });
-            });
+            var status =true;
             $('body').on('click', '.like', function () {
-                $(this).toggleClass("btn-default");
-                    var url ="unlike";
-                    var like_id = $(this).attr("idlike");
-                    var postid =$('#submitcomment').val();
+                    var url ="{{route('post.like')}}";
+                    var idPost = $(this).attr('data-post-id');
                 $.ajax({
                     type:'POST',
                     url: url,
                     data:
                     {
-                        post_id: postid,
-                        status: 0,
-                        likeid: like_id,
+                        idPost: idPost,
                         _token: "{{csrf_token()}}"
                     },
-                    success: function(result)
+                    success: function(data)
                     {
-                        console.log("success");
+                        console.log(data.status);
+                        if(data.status){
+                            $('.like').html('<span>Unlike</span>');
+                        }else{
+                            $('.like').html('<i class="fa fa-thumbs-up"></i><span>Like</span>') ;
+                        }
+                        console.log(data.message);
                     }
                 });
             });
