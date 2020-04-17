@@ -91,20 +91,27 @@
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                             @if(isset($user_login))
                                                 <img src="upload/user/photo/{{$user_login->photo}}" style="width:30px; height:30px;boder:solid 5px black; border-radius:50%">
-                                            @endif
-                                            <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-caret-down"></i>                              
                                         </a>
                                             <ul class="dropdown-menu dropdown-user">
                                                 @if(isset($user_login))
                                                     <li>
                                                         <a href="admin/user/edit/{{$user_login->id}}"><i class="fa fa-user fa-fw"></i>{{$user_login->username}}</a>
                                                     </li>
+                                                    @if($user_login->role==0)
                                                     <li>
-                                                        <a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                                                        <a href="#"> <i class="fa fa-user-secret fa-fw"></i>Admin</a>
+                                                    </li>
+                                                    @endif
+                                                    <li>
+                                                        <a href="user/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
                                                     </li>
                                                 @endif
                                             </ul>
                                             <!-- /.dropdown-user -->
+                                            @else
+                                                <a href="user/login">Login</a>
+                                            @endif
                                     </li>
                                         <!-- /.dropdown -->
                                 </ul>
