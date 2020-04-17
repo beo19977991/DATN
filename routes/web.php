@@ -23,11 +23,19 @@ Route::get('/news','NewsController@getListNews');
 Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
+// =========================================================================
 Route::get('user/login','UserController@getLoginUser');
+Route::post('user/login','UserController@postLoginUser');
+
 Route::get('user/register','UserController@getRegisterUser');
+Route::post('user/register','UserController@postRegisterUser');
+
+Route::get('user/logout','UserController@getLogoutUser');
+// ===========================================================================
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');
 Route::get('admin/logout','UserController@getLogoutAdmin');
+// ===========================================================================
 Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('list','UserController@getList');

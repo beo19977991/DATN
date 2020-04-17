@@ -31,15 +31,15 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Registration Info</h2>
-                    <form method="POST">
+                    <form action="user/register" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Username" name="username">
+                        </div>
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="Name" name="name">
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                        </div>
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="gender">
                                     <option disabled="disabled" selected="selected">Gender</option>
@@ -49,12 +49,19 @@
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="input-group">
                             <input class="input--style-3" type="email" placeholder="Email" name="email">
                         </div>
+                        <div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
+                            <input class="input100" type="password" name="password" placeholder="password">
+                            <span class="focus-input100"></span>
+                        </div>
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Address" name="address">
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="submit">Submit</button>

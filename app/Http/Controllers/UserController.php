@@ -124,12 +124,12 @@ class UserController extends Controller
         ]);
 
         $user = new User;
-        $user->username= $request->username;
-        $user->name=$request->name;
-        $user->email= $request->email;
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->phone= $request->phone;
-        $user->address=$request->address;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
         if($request->hasFile('photo'))
         {
             $file=$request->file('photo');
@@ -145,13 +145,13 @@ class UserController extends Controller
                 $photo = Str::random(4)."_".$name;
             }
             $file->move("upload/user/photo",$photo);
-            $user->photo=$photo;
+            $user->photo = $photo;
         }
         else
         {
             $user->photo="default.png";
         }
-        $user->role=$request->role;
+        $user->role = $request->role;
        $user->save();
        return redirect('admin/user/add')->with('message','Add user succes');
     }
@@ -200,8 +200,79 @@ class UserController extends Controller
     {
         return view('login');
     }
+    public function postLoginUser(Request $request)
+    {
+        $this->validate($request,[
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:32',
+        ],[
+            'email.required'=>'You have not enter email',
+            'email.email'=>'You have not entered the correct email format',
+            'password.required'=>'You have not enter password',
+            'password.min'=>'Password have at lease 6 characters',
+            'password.max'=>'Password have at mosr 32 characters'
+        ]);
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
+        if(Auth::attempt($credentials))
+        {
+            return redirect('home');
+        }
+        else
+        {
+            return redirect('user/login')->with('message','Login Error');
+        }
+    }
     public function getRegisterUser()
     {
         return view('register');
+    }
+    public function postRegisterUser(Request $request)
+    {
+        $this->validate($request,[
+            'username'=>'required|min:6|max:32|unique:users,username',
+            'name'=>'required|',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min:6|max:32',
+            'phone'=>'required|max:10|unique:users,phone',
+            'address'=>'required|min:3|max:32',
+            
+        ],[
+            'username.required'=>'You have not enter username',
+            'username.min'=>'Username have at least 6 characters',
+            'username.max'=>'Username have at most 32 characters',
+            'username.unique'=>'Username already exist',
+            'name.required'=>'You have not enter name',
+            'email.required'=>'You have not enter email',
+            'email.email'=>'You have not entered the correct email format',
+            'email.unique'=>'Email already exist',
+            'password.required'=>'You have not enter password',
+            'password.min'=>'Password have at lease 6 characters',
+            'password.max'=>'Password have at most 32 characters',
+            'phone.required'=>'You have not enter phone number',
+            'phone.unique'=>'Phone number already exist',
+            'address.required'=>'You have not enter Address',
+            'address.min'=>'Address have at least 3 characters',
+            'address.max'=>'Address have at most 32 characters',
+        ]);
+        $user = new User;
+        $user->username= $request->username;
+        $user->name=$request->name;
+        $user->email= $request->email;
+        $user->password = bcrypt($request->password);
+        $user->phone= $request->phone;
+        $user->address=$request->address;
+        $user->photo="default.png";
+        $user->role = 1;
+        $user->active =1;
+        $user->save();
+        return redirect('user/login');
+    }
+    public function getLogoutUser()
+    {
+        Auth::logout();
+        return redirect('home');
     }
 }

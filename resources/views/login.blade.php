@@ -33,23 +33,35 @@
 	
 	<div class="container-login100" style="background-image: url('loginpage/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-			<form class="login100-form validate-form">
+					@if(count($errors) >0)
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $err)
+                                {{$err}}</br>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session('message'))
+                            {{session('message')}}
+                    @endif
+			<form class="login100-form validate-form" action="user/login" method="POST">
+			<input type="hidden" name="_token" value="{{csrf_token()}}">
 				<span class="login100-form-title p-b-37">
 					Sign In
 				</span>
 
-				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-					<input class="input100" type="text" name="username" placeholder="username or email">
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter email">
+					<input class="input100" type="text" name="email" placeholder="Email">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
-					<input class="input100" type="password" name="pass" placeholder="password">
+					<input class="input100" type="password" name="password" placeholder="password">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
+					<button type="submit" class="login100-form-btn">
 						Sign In
 					</button>
 				</div>
@@ -71,7 +83,7 @@
 				</div>
 
 				<div class="text-center">
-					<a href="#" class="txt2 hov1">
+					<a href="user/register" class="txt2 hov1">
 						Sign Up
 					</a>
 				</div>
