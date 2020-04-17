@@ -37,6 +37,9 @@ Route::post('admin/login','UserController@postLoginAdmin');
 Route::get('admin/logout','UserController@getLogoutAdmin');
 // ===========================================================================
 Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
+    Route::get('pages',function(){
+        return view('admin.index');
+    });
     Route::group(['prefix' => 'user'], function () {
         Route::get('list','UserController@getList');
 

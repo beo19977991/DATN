@@ -100,7 +100,7 @@
                                                     </li>
                                                     @if($user_login->role==0)
                                                     <li>
-                                                        <a href="#"> <i class="fa fa-user-secret fa-fw"></i>Admin</a>
+                                                        <a href="admin/pages"> <i class="fa fa-user-secret fa-fw"></i>Admin</a>
                                                     </li>
                                                     @endif
                                                     <li>
