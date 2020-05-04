@@ -14,6 +14,7 @@
                             <ul class="breadcrumb">
                                 <li><a href="#">Home</a></li>
                                 <li class="active">News</li>
+                                <li><a href="page/create_post">Create Post</a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,7 +27,26 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-9" id="tag_container">
                             <section class="articles">
-                                @include('news.data')
+                                @foreach($posts as $post)
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="single-news-page">
+                                                <div class="single-news">
+                                                    <img style="width:236.25px;height:142.2px" src="upload/post/photo/{{$post->photo}}">
+                                                    <div class="date">{{$post->created_at->format('d')}}<br>{{$post->created_at->format('M')}}<br>{{$post->created_at->format('Y')}}</div>
+                                                </div>
+                                                <div class="news-content">
+                                                    <h3><a href="/news/{{$post->id}}">{{$post->title}}</a></h3>
+                                                    <p>{{$post->preview}}</p>
+                                                    <a class="read-more" href="/news-detail/{{$post->id}}">Read More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @endforeach
+                                <div class="pagination-area">
+                                    <ul class="pagination">
+                                        {!!$posts->render()!!}
+                                    </ul>
+                                </div>
                             </section>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3">

@@ -24,10 +24,13 @@ Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
 // =========================================================================
-Route::get('page/trainer.html','PageController@getListTrainer');
-Route::get('page/profile/{id}','PageController@getProfile');
+Route::get('page/trainer.html', 'PageController@getListTrainer');
+Route::get('page/profile/{id}', 'PageController@getProfile');
+
+Route::get('page/create_post', 'PageController@getCreatePost');
+Route::post('page/create_post', 'PageController@postCreatePost');
 // =========================================================================
-Route::get('user/login','UserController@getLoginUser');
+Route::get('user/login','UserController@getLoginUser')->name('login');
 Route::post('user/login','UserController@postLoginUser');
 
 Route::get('user/register','UserController@getRegisterUser');

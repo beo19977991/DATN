@@ -6099,6 +6099,31 @@ ul.counter-list li:last-child {
   padding-right: 6px;
   color: #fb5b21;
 }
+.page-content input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+.page-content label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+.page-content input[type=submit] {
+  background-color: #fb5b21;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+
+.page-content input[type=submit]:hover {
+  background-color: #45a049;
+}
+
 /*==============  End of Single page style  ================*/
 /*===========================================================
 =                   35. Price Table area style              =
