@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Exercise;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -28,8 +30,44 @@ class PageController extends Controller
     {
         return view('post');
     }
-    public function postCreatePost()
+    public function postCreatePost(Request $request)
     {
-
+        $this->validate($request,[
+            'title'=>'required',
+            'preview'=>'required',
+            'body'=>'required',
+        ],[
+            'title.required'=>'You have not enter title',
+            'preview.required'=>'You have not enter preview',
+            'body.required'=>'You have not enter body',
+        ]);
+        $post = new Post;
+        $post->idUser=(Auth::user()->id);
+        $post->title = $request->title;
+        $post->preview = $request->preview;
+        $post->body = $request->body;
+        if($request->hasFile('photo'))
+        {
+            $file=$request->file('photo');
+            $extension= $file->getClientOriginalExtension();
+            if($extension != 'jpg' && $extension != 'png' && $extension != 'jepg')
+            {
+                return redirect('admin/post/add')->with('error','You just select file have extension jpg, png, jepg');
+            }
+            $name = $file->getClientOriginalName();
+            $photo = Str::random(4)."_".$name;
+            while(file_exists("upload/post/photo".$photo))
+            {
+                $photo = Str::random(4)."_".$name;
+            }
+            $file->move("upload/post/photo",$photo);
+            $post->photo=$photo;
+        }
+        else
+        {
+            $post->photo="";
+        }
+        $post->save();
+        return redirect('page/create_post')->with('message','Add post Success');
     }
 }

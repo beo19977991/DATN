@@ -266,6 +266,11 @@
     <!-- plugins JS
         ============================================ -->
     <script src="{{ asset('js/plugins.js') }}"></script>
+    <!-- ============================================ -->
+    <!-- ckeditor -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replace('ckeditor'); </script>
+    <!-- ============================================ -->
 
 
 </body>
