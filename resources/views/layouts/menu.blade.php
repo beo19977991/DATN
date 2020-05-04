@@ -11,7 +11,7 @@
                 </ul>
             </li>
             <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="/schedule">Schedule</a></li>
-            <li class="{{Request::is('trainer*') ? 'active' : ''}}"><a href="/trainer">Trainers</a></li>
+            <li class="{{Request::is('trainer*') ? 'active' : ''}}"><a href="page/trainer.html">Trainers</a></li>
             <li class="{{Request::is('news*') ? 'active' : ''}}"><a href="/news">News</a></li>
             <li class="{{Request::is('pages*') ? 'active' : ''}}"><a href="/pages">Pages</a>
                 <ul class="mega-menu-dropdown">

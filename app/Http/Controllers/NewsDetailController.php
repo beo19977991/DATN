@@ -25,12 +25,11 @@ class NewsDetailController extends Controller
         $likePost = LikedPost::where('idPost','=', $request->idPost)
                                     ->where('idUser','=', $auth->id)
                                     ->first();
-        
         if(is_null($likePost))
         {
             $like = new LikedPost;
             $like->idUser = Auth::user()->id;
-            $like->idPost = $request->post_id;
+            $like->idPost = $request->idPost;
             $like->status = 1;
             $like->save();
             return response()->json([

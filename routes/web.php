@@ -17,12 +17,15 @@ View::composer(['*'],function($view)
     $user_login=Auth::user();
     $view->with('user_login',$user_login);
 });
-
+// Router::get('/sanphan/{slug}-{id}.html', 'controller');
 Route::get('/home', 'HomeController@getHome')->name('home');
 Route::get('/news','NewsController@getListNews');
 Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
+// =========================================================================
+Route::get('page/trainer.html','PageController@getListTrainer');
+Route::get('page/profile/{id}','PageController@getProfile');
 // =========================================================================
 Route::get('user/login','UserController@getLoginUser');
 Route::post('user/login','UserController@postLoginUser');

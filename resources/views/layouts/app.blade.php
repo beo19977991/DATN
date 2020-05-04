@@ -96,7 +96,7 @@
                                             <ul class="dropdown-menu dropdown-user">
                                                 @if(isset($user_login))
                                                     <li>
-                                                        <a href="admin/user/edit/{{$user_login->id}}"><i class="fa fa-user fa-fw"></i>{{$user_login->username}}</a>
+                                                        <a href="page/profile/{{$user_login->id}}"><i class="fa fa-user fa-fw"></i>{{$user_login->username}}</a>
                                                     </li>
                                                     @if($user_login->role==0)
                                                     <li>
