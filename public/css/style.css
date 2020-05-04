@@ -4026,6 +4026,12 @@ a.sign-button:hover {
   position: relative;
   transition: all 0.5s;
 }
+.display-news {
+  display: flex;
+}
+.margin-news{
+  margin-left: 1%;
+}
 .single-news .single-image {
   overflow: hidden;
 }

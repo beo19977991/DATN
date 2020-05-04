@@ -8,13 +8,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="innter-title">
-                            <h2>Trainer Details</h2>
+                            <h2>Profile</h2>
                         </div>
                         <div class="breadcrum-area">
                             <ul class="breadcrumb">
                                 <li><a href="#">Home</a></li>
-                                <li><a href="#">Pages</a></li>
-                                <li class="active">Trainer Details</li>
+                                <li class="active">Profile</li>
                             </ul>
                         </div>
                     </div>
@@ -28,12 +27,12 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="trainer-detail-image">
                                 <div class="detail-image">
-                                    <img src="img/trainers/trainer-details.png" alt="">
+                                    <img src="upload/user/photo/{{$user->photo}}" alt="">
                                 </div>
                                 <div class="trainer-info">
-                                    <p><span>Experience:</span>3 Years</p>
-                                    <p><span>E-mail:</span>Crayy James@gmail.com</p>
-                                    <p><span>Phone:</span>+ 000 00000 0000</p>
+                                    <p><span>Date Joined:</span>{{$user->created_at->format('d M Y')}}</p>
+                                    <p><span>E-mail:</span>{{$user->email}}</p>
+                                    <p><span>Phone:</span>{{$user->phone}}</p>
                                     <ul>
                                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -46,38 +45,74 @@
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="trainer-detail-content">
                                 <div class="detail-heading">
-                                    <h2>Kazi Fahim</h2>
-                                    <p><span class="degination">Fitness Trainer</span></p>
-                                    <p><span class="title">Biography:</span></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sodales ante quis justo egestas euismod. Aenean feugiat nisi commodo quam ornare dictum. Nullam a nunc non mi commodo finibus. Cras fermentum dictum turpis ac scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h2>{{$user->name}}</h2>
+                                    <p><span class="degination">
+                                        @if($user->role ==0)
+                                            {{"Admin"}}
+                                            @elseif($user->role ==1)
+                                            {{"Customer"}}
+                                            @elseif($user->role ==2)
+                                            {{"Trainer"}}
+                                            @elseif($user->role ==3)
+                                            {{"Staff"}}
+                                        @endif
+                                    </span></p>
                                 </div>
+                                @if(isset($posts))
+                                </br>
                                 <div class="skill-content-3">
-                                    <h3>Skills:</h3>
+                                    <h3>Posts:</h3>
                                     <div class="skill">
-                                        <!-- PROGRESS START -->
-                                        <div class="progress">
-                                          <div class="lead">Yoga</div>
-                                          <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s"> <span>95%</span></div>
+                                        @foreach($posts as $post)
+                                        <div class="single-latest-news display-news">
+                                            <div class="single-news">
+                                                <div class="single-image"><img src="upload/post/photo/{{$post->photo}}" alt=""></div>
+                                                <div class="date">{{$post->created_at->format('d')}}
+                                                    <br>{{$post->created_at->format('M')}}
+                                                    <br>{{$post->created_at->format('Y')}}</div>
+                                            </div>
+                                            <div class="news-content margin-news">
+                                                <h3><a href="news-detail/{{$post->id}}">{{$post->title}}</a></h3>
+                                                <p>{{$post->preview}}</p>
+                                            </div>
                                         </div>
-                                        <!-- PROGRESS END -->
-                                        <!-- PROGRESS START -->
-                                        <div class="progress">
-                                          <div class="lead">Boxing</div>
-                                          <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>85%</span> </div>
-                                        </div>
-                                        <!-- PROGRESS END -->
-                                        <!-- PROGRESS START -->
-                                        <div class="progress">
-                                          <div class="lead">GYM</div>
-                                          <div class="progress-bar wow fadeInLeft" data-progress="80%" style="width: 80%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>80%</span> </div>
-                                        </div>
-                                        <!-- PROGRESS END -->
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
+<!-- Start feature classes area -->
+                @if($user->role ==2)
+                <div class="feature-classes-area nav-on-hover">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>EXERCISE</h2>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="gym-carousel nav-control-top" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
+                        @foreach($exercise as $ex)
+                        <div class="single-product-classes">
+                                <div class="single-product">
+                                    <video class="img-responsive" controls>
+                                        <source src="upload/exercise/video/{{$ex->video}}">
+                                    </video>
+                                </div>
+                                <div class="product-content">
+                                    <h3><a href="#">{{$ex->typeExercise->typeExerciseName}}</a></h3>
+                                    <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h4>
+                                    <h3>{{$ex->preview}}</h4>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endif
+<!-- End feature product area -->
             </div>
 
             <!-- End Trainer details area -->

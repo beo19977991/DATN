@@ -107,7 +107,7 @@
                             <div class="being-content">
                                 <h2>Being <span>Body</span></h2>
                                 <p>Builders</p>
-                                <a class="btn sign-button" href="#">Sign up!</a>
+                                <a class="btn sign-button" href="user/login">Sign in!</a>
                             </div>
                         </div>
                     </div>

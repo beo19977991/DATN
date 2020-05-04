@@ -25,10 +25,11 @@
             <div class="our-trainer-area padding-top">
                 <div class="container">
                     <div class="row">
+                    @foreach($trainers as $trainer)
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                             <div class="our-trainer-item">
                                 <div class="trainer-image">
-                                    <img src="img/trainers/trainer1.png" alt="">
+                                    <img style="width:273px; height:324px" src="upload/user/photo/{{$trainer->photo}}" alt="">
                                     <div class="social-overly">
                                         <ul>
                                             <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -38,107 +39,12 @@
                                         </ul>
                                     </div>
                                     <div class="trainer-overly">
-                                        <h3><a href="#">David Fahim</a></h3>
-                                        <span class="builder">Body Builder</span>
+                                        <h3><a href="page/profile/{{$trainer->id}}">{{$trainer->name}}</a></h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="our-trainer-item">
-                                <div class="trainer-image">
-                                    <img src="img/trainers/trainer2.png" alt="">
-                                    <div class="social-overly">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="trainer-overly">
-                                        <h3><a href="#">Jecy Deoko</a></h3>
-                                        <span class="builder">Running Specialist</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="our-trainer-item">
-                                <div class="trainer-image">
-                                    <img src="img/trainers/trainer3.png" alt="">
-                                    <div class="social-overly">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="trainer-overly">
-                                        <h3><a href="#">John Smith</a></h3>
-                                        <span class="builder">Weight Lifting</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="our-trainer-item">
-                                <div class="trainer-image">
-                                    <img src="img/trainers/trainer4.png" alt="">
-                                    <div class="social-overly">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="trainer-overly">
-                                        <h3><a href="#">David Fahim</a></h3>
-                                        <span class="builder">Body Builder</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="our-trainer-item">
-                                <div class="trainer-image">
-                                    <img src="img/trainers/trainer1.png" alt="">
-                                    <div class="social-overly">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="trainer-overly">
-                                        <h3><a href="#">Jecy Deoko</a></h3>
-                                        <span class="builder">Running Specialist</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                            <div class="our-trainer-item">
-                                <div class="trainer-image">
-                                    <img src="img/trainers/trainer2.png" alt="">
-                                    <div class="social-overly">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="trainer-overly">
-                                        <h3><a href="#">John Smith</a></h3>
-                                        <span class="builder">Weight Lifting</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
                     </div>
                 </div>
             </div>

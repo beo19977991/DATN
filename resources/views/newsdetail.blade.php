@@ -46,7 +46,7 @@
                                     <div class="">
                                         <div class="row">
                                             <div class="col-md-2" >
-                                                <button class="btn btn-primary like" data-post-id="{{$post->id}}" ><i class="fa fa-thumbs-up"></i><span>{{$like->status == 0 ? 'Like' : 'Unlike'}}</span></button>
+                                                <button class="btn btn-primary like" data-post-id="{{$post->id}}" ><i class="fa fa-thumbs-up"></i><span>{{isset($like) && $like->status == 1 ? 'UnLike' : 'Like'}}</span></button>
                                             </div>
                                             <div class="col-md-10" style="margin-left:-40px;">
                                                 <button type="button" class="btn btn-primary comment" value="{{ $post->id }}"><i class="fa fa-comments"></i> Comment</button>
