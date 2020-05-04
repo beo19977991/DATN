@@ -26,27 +26,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-9" id="tag_container">
-                            <section class="articles">
-                                @foreach($posts as $post)
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <div class="single-news-page">
-                                                <div class="single-news">
-                                                    <img style="width:236.25px;height:142.2px" src="upload/post/photo/{{$post->photo}}">
-                                                    <div class="date">{{$post->created_at->format('d')}}<br>{{$post->created_at->format('M')}}<br>{{$post->created_at->format('Y')}}</div>
-                                                </div>
-                                                <div class="news-content">
-                                                    <h3><a href="/news/{{$post->id}}">{{$post->title}}</a></h3>
-                                                    <p>{{$post->preview}}</p>
-                                                    <a class="read-more" href="/news-detail/{{$post->id}}">Read More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                @endforeach
-                                <div class="pagination-area">
-                                    <ul class="pagination">
-                                        {!!$posts->render()!!}
-                                    </ul>
-                                </div>
+                            <section class="articles" id="table_data">
+                                @include('news.data')
                             </section>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3">
@@ -105,29 +86,23 @@
                 </div>
             </div>
             <!-- Start latest news area -->
-@endsection
-@section('ajax')
-<script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
-<script type="text/javascript">
-
-    $(document).ready(function()
-    {
-        $('.tag_container').on('click', '.pagination a', function(e) {
-                e.preventDefault();
-                var url = $('#read-more').attr('href');
-                getArticles(url);
-                window.history.pushState("", "", url);
+<script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script >
+    $(document).ready(function(){
+        $(document).on('click', '.pagination a', function(event){
+            event.preventDefault();
+            var page =$(this).attr('href').split('page=')[1];
+            fetch_data(page);
+        });
+        function fetch_data(page) {
+            $.ajax({
+                url:"/news/fetch_data?page="+page,
+                success:function(data)
+                {
+                    $('#table_data').html(data);
+                }
             });
-
-            function getArticles(url) {
-                $.ajax({
-                    url : url
-                }).done(function (data) {
-                    $('.articles').html(data);
-                }).fail(function () {
-                    alert('Articles could not be loaded.');
-                });
-            }
+        }
     });
 </script>
 @endsection
