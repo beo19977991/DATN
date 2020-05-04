@@ -9,6 +9,9 @@ use App\Exercise;
 
 class PageController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function getListTrainer()
     {
         $trainers = User::where('role','=','2')->get();
@@ -20,5 +23,13 @@ class PageController extends Controller
         $posts = Post::where('idUser','=',$id)->get();
         $exercise = Exercise::where('idUser', '=', $id)->get();
         return view('profile',['user'=>$user,'posts'=>$posts, 'exercise'=>$exercise]);
+    }
+    public function getCreatePost()
+    {
+        return view('post');
+    }
+    public function postCreatePost()
+    {
+
     }
 }

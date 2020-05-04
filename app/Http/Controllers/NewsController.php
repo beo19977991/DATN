@@ -7,6 +7,9 @@ use App\Post;
 
 class NewsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function getListNews(Request $request)
     {
         $posts = Post::orderBy('created_at','DESC')->paginate(4);

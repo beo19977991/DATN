@@ -13,8 +13,10 @@
                         <div class="breadcrum-area">
                             <ul class="breadcrumb">
                                 <li><a href="#">Home</a></li>
-                                <li><a href="#">Pages</a></li>
                                 <li class="active">Trainer</li>
+                                @if($user_login->role == 2)
+                                <li> <a href="">Create Exercise</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

@@ -14,6 +14,7 @@
                             <ul class="breadcrumb">
                                 <li><a href="#">Home</a></li>
                                 <li class="active">News</li>
+                                <li><a href="page/create_post">Create Post</a></li>
                             </ul>
                         </div>
                     </div>

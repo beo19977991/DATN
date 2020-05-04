@@ -65,15 +65,17 @@
                                     <div class="skill">
                                         @foreach($posts as $post)
                                         <div class="single-latest-news display-news">
-                                            <div class="single-news">
-                                                <div class="single-image"><img src="upload/post/photo/{{$post->photo}}" alt=""></div>
-                                                <div class="date">{{$post->created_at->format('d')}}
-                                                    <br>{{$post->created_at->format('M')}}
-                                                    <br>{{$post->created_at->format('Y')}}</div>
-                                            </div>
-                                            <div class="news-content margin-news">
-                                                <h3><a href="news-detail/{{$post->id}}">{{$post->title}}</a></h3>
-                                                <p>{{$post->preview}}</p>
+                                            <div class="single-news-page">
+                                                <div class="single-news">
+                                                    <div class="single-image"><img style="width:236.25px;height:142.2px" src="upload/post/photo/{{$post->photo}}" alt=""></div>
+                                                    <div class="date">{{$post->created_at->format('d')}}
+                                                        <br>{{$post->created_at->format('M')}}
+                                                        <br>{{$post->created_at->format('Y')}}</div>
+                                                </div>
+                                                <div class="news-content margin-news">
+                                                    <h3><a href="news-detail/{{$post->id}}">{{$post->title}}</a></h3>
+                                                    <p>{{$post->preview}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         @endforeach
