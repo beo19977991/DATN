@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Post;
 use App\Exercise;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
+
 
 class PageController extends Controller
 {
@@ -69,5 +70,18 @@ class PageController extends Controller
         }
         $post->save();
         return redirect('page/create_post')->with('message','Add post Success');
+    }
+    public function getListExercise()
+    {
+        $exercise = Exercise::orderBy('created_at','DESC')->paginate(1);
+        return view('exercise',['exercise'=>$exercise]);
+    }
+    public function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $exercise = Exercise::orderBy('created_at','DESC')->paginate(1);
+            return view('exercises.exercise_data',['exercise'=>$exercise])->render();
+        }
     }
 }

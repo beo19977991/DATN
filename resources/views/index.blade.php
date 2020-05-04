@@ -83,9 +83,8 @@
                         </div>
                         <div class="product-content">
                             <h3><a href="#">{{$ex->typeExercise->typeExerciseName}}</a></h3>
-                            <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h4>
-                            
-                            <h3>{{$ex->preview}}</h4>
+                            <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h3>
+                            <h3>{{$ex->preview}}</h3>
                         </div>
                     </div>
                 @endforeach

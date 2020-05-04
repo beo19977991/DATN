@@ -19,7 +19,10 @@ View::composer(['*'],function($view)
 });
 // Router::get('/sanphan/{slug}-{id}.html', 'controller');
 Route::get('/home', 'HomeController@getHome')->name('home');
+
 Route::get('/news','NewsController@getListNews');
+Route::get('news/fetch_data','NewsController@fetch_data');
+
 Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
@@ -29,6 +32,13 @@ Route::get('page/profile/{id}', 'PageController@getProfile');
 
 Route::get('page/create_post', 'PageController@getCreatePost');
 Route::post('page/create_post', 'PageController@postCreatePost');
+
+Route::get('page/exercise/pagination','PageController@getListExercise');
+Route::get('page/exercise/pagination/fetch_data','PageController@fetch_data');
+
+Route::get('page/create_exercise','PageController@getCreateExercise');
+Route::post('page/create_exercise', 'PageController@postCreateExercise');
+
 // =========================================================================
 Route::get('user/login','UserController@getLoginUser')->name('login');
 Route::post('user/login','UserController@postLoginUser');

@@ -13,10 +13,14 @@ class NewsController extends Controller
     public function getListNews(Request $request)
     {
         $posts = Post::orderBy('created_at','DESC')->paginate(2);
+        return view('news',['posts'=>$posts]);
+    }
+    public function fetch_data(Request $request)
+    {
         if($request->ajax())
         {
+            $posts = Post::orderBy('created_at','DESC')->paginate(2);
             return view('news.data',['posts'=>$posts])->render();
         }
-        return view('news',['posts'=>$posts]);
     }
 }
