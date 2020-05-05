@@ -14,6 +14,9 @@
                             <ul class="breadcrumb">
                                 <li><a href="#">Home</a></li>
                                 <li class="active">Profile</li>
+                                @if($user->id==$user_login->id)
+                                <li><a href="">Edit Profile</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -104,9 +107,12 @@
                                     </video>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="#">{{$ex->typeExercise->typeExerciseName}}</a></h3>
+                                    <h3>{{$ex->typeExercise->typeExerciseName}}</h3>
                                     <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h4>
-                                    <h3>{{$ex->preview}}</h4>
+                                    <h3><a href="video/{{$ex->id}}">{{$ex->title}}</a></h4>
+                                    @if($user->id==$user_login->id)
+                                    <a href="page/edit_exercise/{{$ex->id}}">edit</a>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

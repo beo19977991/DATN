@@ -39,6 +39,12 @@ Route::get('page/exercise/pagination/fetch_data','PageController@fetch_data');
 Route::get('page/create_exercise','PageController@getCreateExercise');
 Route::post('page/create_exercise', 'PageController@postCreateExercise');
 
+Route::get('page/edit_exercise/{id}','PageController@getEditExercise');
+Route::post('page/edit_exercise/{id}','PageController@postEditExercise');
+
+Route::get('video/{id}','PageController@watchVideo');
+
+
 // =========================================================================
 Route::get('user/login','UserController@getLoginUser')->name('login');
 Route::post('user/login','UserController@postLoginUser');
