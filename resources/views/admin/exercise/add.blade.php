@@ -55,7 +55,7 @@
             <!-- /.container-fluid -->
         </div>
 @endsection
-@section('script')
+@section('ajax')
 <script>
     $(document).ready(function(){
         $("#typeExercise").change(function(){

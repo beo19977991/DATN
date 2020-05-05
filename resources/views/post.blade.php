@@ -41,7 +41,7 @@
                                 <div class="page-content">
                                     <div class="page-header">
                                     </div>
-                                    <form action="" method="POST" enctype="multipart/form-data" id="uploadForm" >
+                                    <form action="page/create_post" method="POST" enctype="multipart/form-data" id="uploadForm" >
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <div class="form-group">
                                             <label>Title</label>
@@ -60,7 +60,7 @@
                                             <input  type="file"  id="file" name="photo" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" value="Post">
+                                            <input type="submit" value="Create">
                                         </div>
                                     </form>
                                 </div>
