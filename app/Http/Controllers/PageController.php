@@ -179,4 +179,11 @@ class PageController extends Controller
         $exercise= Exercise::find($id);
         return view('videos.video',['exercise'=>$exercise]);
     }
+    public function getDeleteExercise($id)
+    {
+        $id_user_login = Auth::user()->id;
+        $exercise = Exercise::find($id);
+        $exercise->delete();
+        return redirect('page/profile/'.$id_user_login)->with('message','Delete Exercise Success');
+    }
 }

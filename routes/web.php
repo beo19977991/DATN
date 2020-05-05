@@ -42,6 +42,8 @@ Route::post('page/create_exercise', 'PageController@postCreateExercise');
 Route::get('page/edit_exercise/{id}','PageController@getEditExercise');
 Route::post('page/edit_exercise/{id}','PageController@postEditExercise');
 
+Route::get('page/delete_exercise/{id}','PageController@getDeleteExercise');
+
 Route::get('video/{id}','PageController@watchVideo');
 
 
