@@ -83,7 +83,7 @@
                         </div>
                         <div class="product-content">
                             <h3><a href="#">{{$ex->typeExercise->typeExerciseName}}</a></h3>
-                            <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a> </h3>
+                            <h3>Trainer:<a href="page/profile/{{$ex->user->id}}">{{" ".$ex->user->username}}</a> </h3>
                             <h3><a href="video/{{$ex->id}}">{{$ex->title}}</a></h3>
                         </div>
                     </div>

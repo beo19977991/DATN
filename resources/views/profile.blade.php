@@ -23,6 +23,18 @@
                 </div>
             </div>
             <!-- End Inner Banner area -->
+            @if(count($errors) >0)
+                        <div class ="alert alert-danger">
+                            @foreach($errors->all() as $err)
+                                {{$err}}</br>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if(session('message'))
+                        <div class="alert alert-success">
+                            {{session('message')}}
+                        </div>
+                    @endif
             <!-- Start Trainer details area -->
             <div class="trainer-details-area padding-space">
                 <div class="container">
@@ -78,6 +90,11 @@
                                                 <div class="news-content margin-news">
                                                     <h3><a href="news-detail/{{$post->id}}">{{$post->title}}</a></h3>
                                                     <p>{{$post->preview}}</p>
+                                                    @if($user->id==$user_login->id)
+                                                    <a href="">edit</a>
+                                                    &nbsp;&nbsp;
+                                                    <a href="">delete</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -112,6 +129,8 @@
                                     <h3><a href="video/{{$ex->id}}">{{$ex->title}}</a></h4>
                                     @if($user->id==$user_login->id)
                                     <a href="page/edit_exercise/{{$ex->id}}">edit</a>
+                                    &nbsp;&nbsp;
+                                    <a href="page/delete_exercise/{{$ex->id}}">delete</a>
                                     @endif
                                 </div>
                             </div>

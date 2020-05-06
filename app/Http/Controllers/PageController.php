@@ -9,6 +9,9 @@ use App\User;
 use App\Post;
 use App\Exercise;
 use App\TypeExercise;
+use App\Schedule;
+use App\TypeOfSchedule;
+use Illuminate\Support\Collection;
 
 
 class PageController extends Controller
@@ -179,4 +182,61 @@ class PageController extends Controller
         $exercise= Exercise::find($id);
         return view('videos.video',['exercise'=>$exercise]);
     }
+    public function getDeleteExercise($id)
+    {
+        $id_user_login = Auth::user()->id;
+        $exercise = Exercise::find($id);
+        $exercise->delete();
+        return redirect('page/profile/'.$id_user_login)->with('message','Delete Exercise Success');
+    }
+    // start function for schedule
+    public function getListSchedule()
+    {
+        $schedule = Schedule::all();
+
+        foreach($schedule as $index => $s) {
+            $ar = [];
+            foreach ($s->body as $key => $value) {
+                $value = TypeExercise::whereIn("id", $value)->pluck("typeExerciseName");
+                array_push($ar, $value);
+            }
+            $schedule[$index]->body = $ar;
+        }
+        $data = Collection::make(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+        return view('schedule',['schedule'=>$schedule,'data'=>$data]);
+    }
+
+    public function getCreateSchedule()
+    {
+        $typeSchedule = TypeOfSchedule::all();
+        $typeExercise =TypeExercise::all();
+        $schedule = Schedule::all();
+
+        foreach($schedule as $index => $s) {
+            $ar = [];
+            foreach ($s->body as $key => $value) {
+                $value = TypeExercise::whereIn("id", $value)->pluck("typeExerciseName");
+                array_push($ar, $value);
+            }
+            $schedule[$index]->body = $ar;
+        }
+        $data = Collection::make(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+        return view('schedule.new_schedule',['schedule'=>$schedule,'typeSchedule'=>$typeSchedule,'typeExercise'=>$typeExercise,'data'=>$data]);
+    }
+    public function postCreateSchedule(Request $request)
+    {
+        $schedule = new Schedule;
+        $schedule->idUser = Auth::user()->id;
+        $schedule->idTypeSchedule=$request->typeSchedule;
+        $items= $request->selectItem;
+        $arr =[];
+        foreach($items as $i =>$value)
+        {
+            array_push($arr, array_map('intval', $value));
+        }
+        $schedule->body= $arr;
+        $schedule->save();
+        return redirect('schedule/create_schedule')->with('message','Success');
+    }
+    // ===========================================================
 }

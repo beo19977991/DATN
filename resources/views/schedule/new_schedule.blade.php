@@ -15,7 +15,7 @@
                                 <li><a href="#">Home</a></li>
                                 <li class="active">Schedule</li>
                                 @if($user_login->role==2)
-                                    <li><a href="schedule/create_schedule">Create Schedule</a></li>
+                                    <li><a href="">Create Schedule</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -23,53 +23,61 @@
                 </div>
             </div>
             <!-- End Inner Banner area -->
-            <!-- Start class schedule area -->
             <div class="class-schedule schedule-page padding-space">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="class-schedule-wrap">
-                                <!-- Tabs -->
-                                    <ul id="myTab" class="nav nav-tabs">
-                                    @foreach($schedule as $index => $s)
-                                    <li @if($index =='0') class="active"@endif><a href="" data-toggle="tab" onclick= "openTab('{{$index}}')">{{$s->typeSchedule->typeOfScheduleName}}</a></li>
-                                    @endforeach
-                                    </ul>
-                                <div id="myTabContent" class="tab-content class-schedule-tab">
-                                @foreach($schedule as $i => $s)
-                                    <div class="tab-pane fade in active" id="{{$i}}" @if($i!='0') style="display:none" @endif>
-                                        @foreach($data as $item=>$index)
-                                        <ul class="odd">
-                                            <li>{{$index}}</li>
-                                            <li>
-                                                @foreach($s->body[$item] as $sch)
-                                                    {{$sch}}
-                                                @endforeach
-                                            </li>
-                                            <li>
-                                                <a href="page/profile/{{$s->user->id}}">{{$s->user->username}}</a>
-                                            </li>
-                                            <li><a href="#">Join Now!</a></li>
-                                        </ul>
+                                <!-- /.col-lg-12 -->
+                                @if(count($errors) >0)
+                                    <div class ="alert alert-danger">
+                                        @foreach($errors->all() as $err)
+                                            {{$err}}</br>
                                         @endforeach
                                     </div>
-                                @endforeach
+                                @endif
+                                @if(session('message'))
+                                    <div class="alert alert-success">
+                                        {{session('message')}}
+                                    </div>
+                                @endif
+                                <div class="col-lg-7" style="padding-bottom:120px">
+                                    <div class="page-content">
+                                        <form action="schedule/create_schedule" method="POST" enctype="multipart/form-data" >
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <div class="form-group">
+                                                <label>Type Schedule</label>
+                                                <select class="monday" name="typeSchedule" id="typeSchedule monday">
+                                                @foreach($typeSchedule as $type)
+                                                    <option value="{{$type->id}}"> {{$type->typeOfScheduleName}}</option>
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                    @foreach($data as $item)
+                                                    <label>{{$item}}</label>
+                                                            <div>
+                                                                <select id="{{$item}}" class="{{$item}}" style="width:50%" class="browser-default custom-select" multiple name="selectItem[{{$item}}][]">
+                                                                    @foreach($typeExercise as $type)
+                                                                    <option  value="{{$type->id}}">{{$type->typeExerciseName}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                    @endforeach
+                                            </div>
+                                            <div class="form-group">
+                                                    <input type="submit" value="Create">
+                                            </div>
+                                        <form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
+                <!-- /.row -->
             </div>
-<script>
-    function openTab(id) {
-    var i;
-    var x = document.getElementsByClassName("tab-pane");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";  
-    }
-    document.getElementById(id).style.display = "block";  
-    }
-</script>
+            <!-- /.container-fluid -->
+        </div>
 </br></br>
             <!-- End class schedule area -->
             <!-- Start Fitness class summer area -->
@@ -151,4 +159,20 @@
                 </div>
             </div>
             <!-- End logo showcase area -->
+<script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script>
+        $(document).ready(function(){
+            $('.monday').select2();
+            $('.tuesday').select2();
+            $('.wednesday').select2();
+            $('.thursday').select2();
+            $('.friday').select2();
+            $('.saturday').select2();
+            $('.sunday').select2();
+        });
+        $(document).ready(function(){
+            console.log('oke');
+        });
+</script>
 @endsection

@@ -42,9 +42,15 @@ Route::post('page/create_exercise', 'PageController@postCreateExercise');
 Route::get('page/edit_exercise/{id}','PageController@getEditExercise');
 Route::post('page/edit_exercise/{id}','PageController@postEditExercise');
 
+Route::get('page/delete_exercise/{id}','PageController@getDeleteExercise');
+
 Route::get('video/{id}','PageController@watchVideo');
 
+// ========================================================================
+Route::get('schedule','PageController@getListSchedule');
 
+Route::get('schedule/create_schedule','PageController@getCreateSchedule');
+Route::post('schedule/create_schedule','PageController@postCreateSchedule');
 // =========================================================================
 Route::get('user/login','UserController@getLoginUser')->name('login');
 Route::post('user/login','UserController@postLoginUser');
