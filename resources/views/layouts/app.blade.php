@@ -126,8 +126,11 @@
 
         <!-- Start Content Area-->
             @yield('content')
-            @yield('ajax')
+
         <!-- end content -->
+        <!-- start ajax -->
+        @yield('ajax')
+        <!-- end ajax -->
         <!-- Start footer Area -->
         <footer>
             <div class="footer-area">
@@ -225,6 +228,7 @@
             </div>
             <!-- End footer Area -->
     <a href="#" class="scrollToTop"></a>
+
     <!-- jquery
     ============================================ -->
     <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>

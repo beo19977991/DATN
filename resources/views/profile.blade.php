@@ -90,6 +90,11 @@
                                                 <div class="news-content margin-news">
                                                     <h3><a href="news-detail/{{$post->id}}">{{$post->title}}</a></h3>
                                                     <p>{{$post->preview}}</p>
+                                                    @if($user->id==$user_login->id)
+                                                    <a href="">edit</a>
+                                                    &nbsp;&nbsp;
+                                                    <a href="">delete</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

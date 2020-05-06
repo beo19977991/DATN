@@ -34,7 +34,6 @@
                             </div>
                             <div class="form-group">
                                     @foreach($data as $item)
-                                    
                                     <label>{{$item}}</label>
                                             <div>
                                                 <select id="{{$item}}" class="{{$item}}" style="width:50%" class="browser-default custom-select" multiple name="selectItem[{{$item}}][]">
