@@ -273,7 +273,7 @@
     <!-- ============================================ -->
     <!-- ckeditor -->
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script> CKEDITOR.replace('ckeditor'); </script>
+    
     <!-- ============================================ -->
 
 

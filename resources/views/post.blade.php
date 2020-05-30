@@ -75,6 +75,7 @@
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+        CKEDITOR.replace('ckeditor');
         function filePreview(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
