@@ -46,6 +46,15 @@ Route::get('page/delete_exercise/{id}','PageController@getDeleteExercise');
 
 Route::get('video/{id}','PageController@watchVideo');
 
+// ================================course=========================================
+Route::get('page/create_course','PageController@getCreateCourse');
+Route::post('page/create_course','PageController@postCreateCourse');
+
+Route::get('page/course', 'PageController@getCourse');
+
+Route::get('page/course/{id}','PageController@getCourseDetail');
+Route::get('page/join_class/{id}','PageController@getJoinClass');
+
 // ========================================================================
 Route::get('schedule','PageController@getListSchedule');
 

@@ -11,6 +11,7 @@ use App\Exercise;
 use App\TypeExercise;
 use App\Schedule;
 use App\TypeOfSchedule;
+use App\Course;
 use Illuminate\Support\Collection;
 
 
@@ -239,4 +240,55 @@ class PageController extends Controller
         return redirect('schedule/create_schedule')->with('message','Success');
     }
     // ===========================================================
+// ========================COURSE=============================
+    public function getCreateCourse()
+    {
+        $trainer = User::where('role','=','2')->get();
+        return view('course.create_course',['trainer'=>$trainer]);
+    }
+    public function postCreateCourse(Request $request)
+    {
+        $arr =[];
+        $course = new Course;
+        $course->course_name = $request->course_name;
+        $course->staff_id= Auth::user()->id;
+        $course->trainer_id = $request->trainer;
+        $course->member = json_encode($arr);
+        $course->start_time= $request->start_time;
+        $course->end_time= $request->end_time;
+        $course->price = $request->price;
+        $course->discount = $request->discount;
+        $course->save();
+        return redirect('page/create_course')->with('message','Create Course success !!!');
+    }
+    public function getCourse()
+    {
+        $course = Course::all();
+        return view('course.course',['course'=>$course]);
+    }
+    public function getCourseDetail($id)
+    {
+        $course = Course::find($id);
+        $arr = json_decode($course->member);
+        $members =[];
+        foreach($arr as $a)
+        {
+            $member = User::find($a);
+            array_push($members,$member);
+        }
+        return view('course.course_detail',['course'=>$course, 'members'=>$members]);
+    }
+    public function getJoinClass($id)
+    {
+        $course = Course::find($id);
+        $arr = json_decode($course->member);
+        $user_id = Auth::user()->id;
+        if(!in_array($user_id, $arr)&& (count($arr)<=9))
+        {
+            array_push($arr,$user_id);
+            $course->member= json_encode($arr);
+            $course->save();
+        }
+        return redirect('page/course/'.$id);
+    }
 }

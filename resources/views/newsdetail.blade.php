@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| News Detail</title>
-@endsection
+@extends('layouts.app', ['title' => 'Schedule'])
 @section('content')
     <!-- End Header area -->
     <!-- Start Inner Banner area -->

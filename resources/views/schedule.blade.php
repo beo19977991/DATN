@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| Schedule</title>
-@endsection
+@extends('layouts.app', ['title' => 'Schedule'])
 @section('content')
             <!-- Start Inner Banner area -->
             <div class="inner-banner-area">
@@ -60,6 +57,9 @@
                     </div>
                 </div>
             </div>
+            <div id='calendar-container'>
+    <div id='calendar'></div>
+  </div>
 <script>
     function openTab(id) {
     var i;

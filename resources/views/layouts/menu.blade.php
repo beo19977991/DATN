@@ -4,11 +4,7 @@
             <ul>
             <li class="{{Request::is('home*') ? 'active' : ''}}"><a href="/home">Home</a></li>
             <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="/about">About</a></li>
-            <li class="{{Request::is('classes*') ? 'active' : ''}}"><a href="/classes">Classes</a>
-                <ul>
-                    <li><a href="#">Classes</a></li>
-                    <li><a href="#">Single Classes</a></li>
-                </ul>
+            <li class="{{Request::is('page/course*') ? 'active' : ''}}"><a href="page/course">Classes</a>
             </li>
             <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="/schedule">Schedule</a></li>
             <li class="{{Request::is('page/trainer*') ? 'active' : ''}}"><a href="page/trainer.html">Trainers</a></li>

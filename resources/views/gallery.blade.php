@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| Gallery</title>
-@endsection
+@extends('layouts.app', ['title' => 'Gallery'])
 @section('content')
             <!-- Start Inner Banner area -->
             <div class="inner-banner-area">
