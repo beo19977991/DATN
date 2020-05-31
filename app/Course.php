@@ -9,15 +9,21 @@ class Course extends Model
     protected $table = "courses";
 
     protected $fillable= [
-        'idUSer',
-        'courseName',
-        'time',
+        'staff_id',
+        'trainer_id',
+        'class_name',
+        'member',
         'price',
-        'discount',
+        'start_time',
+        'end_time',
     ];
 
-    public function user()
+    public function staff()
     {
-        return $this->belongsTo('App\User','idUser','id');
+        return $this->belongsTo('App\User','staff_id','id');
+    }
+    public function trainer()
+    {
+        return $this->belongsTo('App\User','trainer_id','id');
     }
 }

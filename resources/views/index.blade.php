@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| Home</title>
-@endsection
+@extends('layouts.app', ['title' => 'Home'])
 @section('content')
         <!-- Start slider area  -->
         <div class="slider-area slider-top-space-header1 slider1-caption">

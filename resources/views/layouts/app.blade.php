@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @yield('title')
+    <title>GymStar| {{$title}}<</title>
 
     <base href="{{asset('')}}">
     <!-- favicon
@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <!-- modernizr JS
         ============================================ -->
-    
+    @yield('styles')
 
     
 </head>
@@ -273,9 +273,9 @@
     <!-- ============================================ -->
     <!-- ckeditor -->
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script> CKEDITOR.replace('ckeditor'); </script>
+    
     <!-- ============================================ -->
-
+    @yield('scripts')
 
 </body>
 </html>

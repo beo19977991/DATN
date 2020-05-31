@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| Create Post</title>
-@endsection
+@extends('layouts.app', ['title' => 'Post'])
 @section('content')
             <!-- Start Inner Banner area -->
             <div class="inner-banner-area">
@@ -75,6 +72,7 @@
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+        CKEDITOR.replace('ckeditor');
         function filePreview(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

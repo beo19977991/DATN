@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-<title>GymStar| Error</title>
-@endsection
+@extends('layouts.app', ['title' => 'Error'])
 @section('content')
 
             <!-- Start Inner Banner area -->
