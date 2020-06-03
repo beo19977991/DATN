@@ -90,6 +90,7 @@ class UserController extends Controller
             unlink("upload/user/photo".$user->photo);
             $user->photo=$photo;
         }
+        $user->course_id =0;
         $user->save();
         return redirect('admin/user/edit'.$id)->with('message','Edit User Success');
     }
@@ -152,6 +153,7 @@ class UserController extends Controller
             $user->photo="default.png";
         }
         $user->role = $request->role;
+        $user->course_id = 0;
        $user->save();
        return redirect('admin/user/add')->with('message','Add user succes');
     }
@@ -267,6 +269,7 @@ class UserController extends Controller
         $user->photo="default.png";
         $user->role = 1;
         $user->active =1;
+        $user->course_id = 0;
         $user->save();
         return redirect('user/login');
     }
