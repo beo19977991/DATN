@@ -248,16 +248,36 @@ class PageController extends Controller
     }
     public function postCreateCourse(Request $request)
     {
-        $arr =[];
         $course = new Course;
-        $course->course_name = $request->course_name;
         $course->staff_id= Auth::user()->id;
+        $course->course_name = $request->course_name;
         $course->trainer_id = $request->trainer;
-        $course->member = json_encode($arr);
+        $course->body= $request->body;
         $course->start_time= $request->start_time;
         $course->end_time= $request->end_time;
         $course->price = $request->price;
         $course->discount = $request->discount;
+        if($request->hasFile('photo'))
+        {
+            $file=$request->file('photo');
+            $extension= $file->getClientOriginalExtension();
+            if($extension != 'jpg' && $extension != 'png' && $extension != 'jepg')
+            {
+                return redirect('page/create_course')->with('error','You just select file have extension jpg, png, jepg');
+            }
+            $name = $file->getClientOriginalName();
+            $photo = Str::random(4)."_".$name;
+            while(file_exists("upload/course/photo".$photo))
+            {
+                $photo = Str::random(4)."_".$name;
+            }
+            $file->move("upload/course/photo",$photo);
+            $course->photo=$photo;
+        }
+        else
+        {
+            $course->photo="";
+        }
         $course->save();
         return redirect('page/create_course')->with('message','Create Course success !!!');
     }
@@ -269,26 +289,27 @@ class PageController extends Controller
     public function getCourseDetail($id)
     {
         $course = Course::find($id);
-        $arr = json_decode($course->member);
-        $members =[];
-        foreach($arr as $a)
-        {
-            $member = User::find($a);
-            array_push($members,$member);
-        }
-        return view('course.course_detail',['course'=>$course, 'members'=>$members]);
+        $members = User::where('role','=',1)
+                        ->where('course_id','=',$id)
+                        ->get();
+        return view('course.course_detail',['course'=>$course,'members'=>$members]);
     }
     public function getJoinClass($id)
     {
-        $course = Course::find($id);
-        $arr = json_decode($course->member);
         $user_id = Auth::user()->id;
-        if(!in_array($user_id, $arr)&& (count($arr)<=9))
+        $user_join_class = User::where('id','=',$user_id)
+                                ->where('role','=',1)
+                                ->first();
+        if($user_join_class->course_id != $id)
         {
-            array_push($arr,$user_id);
-            $course->member= json_encode($arr);
-            $course->save();
+            $user_join_class->course_id = $id;
+            $user_join_class->save();
         }
         return redirect('page/course/'.$id);
+    }
+    public function getCustomer()
+    {
+        $customers = User::where('role','=',1)->get();
+        return view('customer.customer',['customers'=>$customers]);
     }
 }

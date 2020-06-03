@@ -10,6 +10,9 @@
                     <ul class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li class="active">Course</li>
+                        @if($user_login->role == 3)
+                        <li><a href="page/customer">Manager Customer</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

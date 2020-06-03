@@ -54,7 +54,8 @@ Route::get('page/course', 'PageController@getCourse');
 
 Route::get('page/course/{id}','PageController@getCourseDetail');
 Route::get('page/join_class/{id}','PageController@getJoinClass');
-
+// ======================customer manager===================================
+Route::get('page/customer','PageController@getCustomer');
 // ========================================================================
 Route::get('schedule','PageController@getListSchedule');
 

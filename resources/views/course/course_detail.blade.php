@@ -26,18 +26,18 @@
                             <div class="single-class-detail">
                                 <div class="class-content">
                                     <div class="detail-img">
-                                        <img src="img/classes/class-detail-img.jpg" alt="detail-img">
+                                        <img src="upload/course/photo/{{$course->photo}}" alt="detail-img">
                                     </div>
                                     <div class="class-heading">
                                         <h3>Body Building</h3>
                                         <ul>
                                             <li><i class="fa fa-clock-o" aria-hidden="true"></i>Start Time : {{\Carbon\Carbon::parse($course->start_time)->format('d/m/Y')}}</li>
-                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>Start Time : {{\Carbon\Carbon::parse($course->end_time)->format('d/m/Y')}}}</li>
+                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i>End Time : {{\Carbon\Carbon::parse($course->end_time)->format('d/m/Y')}}</li>
                                             <li><i class="fa fa-user" aria-hidden="true"></i>Trainer : <a href="#">{{$course->trainer->username}}</a></li>
                                         </ul>
                                     </div>
                                     <div class="content">
-                                        <p>introduction to classes</p>
+                                        <p>{{$course->body}}</p>
                                     </div>
                                     <div class="choose-body">
                                         <h3>Price</h3>
@@ -54,9 +54,9 @@
                                     <div class="choose-body">
                                         <h3>Member of Classes</h3>
                                         <ul class="choose-list">
-                                            @foreach($members as $member)
-                                            <li>{{$member->username}}</li>
-                                            @endforeach
+                                        @foreach($members as $member)
+                                        <li>{{$member->username}}</li>
+                                        @endforeach
                                         </ul>
                                         <a href="page/join_class/{{$course->id}}" class="custom-button" data-title="Join Class">Join Class</a>
                                     </div>
