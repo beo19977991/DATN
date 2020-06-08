@@ -15,6 +15,7 @@ class Course extends Model
         'body',
         'photo',
         'price',
+        'member',
         'start_time',
         'end_time',
     ];

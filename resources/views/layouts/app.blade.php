@@ -98,9 +98,22 @@
                                                     <li>
                                                         <a href="page/profile/{{$user_login->id}}"><i class="fa fa-user fa-fw"></i>{{$user_login->username}}</a>
                                                     </li>
+                                                    <li>
+                                                        <a href="bmr_sheet"><i class="fa fa-user fa-fw"></i>Bmr_Sheet</a>
+                                                    </li>
                                                     @if($user_login->role==0)
                                                     <li>
                                                         <a href="admin/pages"> <i class="fa fa-user-secret fa-fw"></i>Admin</a>
+                                                    </li>
+                                                    @elseif($user_login->role==3)
+                                                    <li>
+                                                        <a href="page/customer"><i class="fa fa-user-secret fa-fw"></i>Customer Manager</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="page/trainer_manager"><i class="fa fa-user-secret fa-fw"></i>Trainer Manager</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="page/course_manager"><i class="fa fa-user-secret fa-fw"></i>Course Manager</a>
                                                     </li>
                                                     @endif
                                                     <li>

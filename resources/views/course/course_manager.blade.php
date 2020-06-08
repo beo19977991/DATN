@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Customer'])
+@extends('layouts.app', ['title' => 'Course'])
 @section('styles')
 <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
@@ -15,12 +15,12 @@
         <div class="container">
             <div class="row">
                 <div class="innter-title">
-                    <h2>Customer</h2>
+                    <h2>Course</h2>
                 </div>
                 <div class="breadcrum-area">
                     <ul class="breadcrumb">
                         <li><a href="#">Home</a></li>
-                        <li class="active">Customer</li>
+                        <li class="active">Course</li>
                     </ul>
                 </div>
             </div>
@@ -39,49 +39,37 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Customer Table</h3>
+                <h3 class="card-title">Course Table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Customer Name</th>
-                    <th>Adress</th>
-                    <th>Phone</th>
-                    <th>Class</th>
+                    <th>Course Name</th>
                     <th>Trainer</th>                
                     <th>Start Time</th>
                     <th>End Time</th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Cost</th>
-                    <th>Duration</th>
+                    <th>Member</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($customers as $customer)
+                  @foreach($courses as $course)
                   <tr>
-                    <td>{{$customer->name}}</td>
-                    <td>{{$customer->address}}</td>
-                    <td>{{$customer->phone}}</td>
-                    <td>{{$customer->course->course_name}}</td>
-                    <td>{{$customer->course->trainer->name}}</td>
-                    <td>{{\Carbon\Carbon::parse($customer->course->start_time)->format('d/m/Y')}}</td>
-                    <td>{{\Carbon\Carbon::parse($customer->course->end_time)->format('d/m/Y')}}</td>
-                    <td>{{$customer->course->price}}</td>
-                    <td>{{$customer->course->discount}}</td>
-                    <td>{{$customer->course->price - ($customer->course->price * $customer->course->discount)}}</td>
-                    @if(strtotime(\Carbon\Carbon::parse($customer->course->end_time)->format('d/m/Y')) < strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
-                      <td style="background-color:skyblue"></td>
-                    @elseif(strtotime($customer->course->end_time) === strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
-                      <td style="background-color:yellow"></td>
-                    @else
-                      <td style="background-color:red"></td>
-                    @endif
-                    <td><i class="ion-ios-trash-outline"></i><a href="page/customer/delete{{$customer->id}}"> Delete</a> 
-                    <i class="ion-edit"><a href="page/customer/edit/{{$customer->id}}"> Edit</a></i>
+                    <td>{{$course->course_name}}</td>
+                    <td>{{$course->trainer->name}}</td>
+                    <td>{{\Carbon\Carbon::parse($course->start_time)->format('d/m/Y')}}</td>
+                    <td>{{\Carbon\Carbon::parse($course->end_time)->format('d/m/Y')}}</td>
+                    <td>{{$course->price}}</td>
+                    <td>{{$course->discount}}</td>
+                    <td>{{$course->price - ($course->price * $course->discount)}}</td>
+                    <td>{{count(json_decode($course->member)) ."/10"}}</td>
+                    <td><i class="ion-ios-trash-outline"></i><a href="#"> Delete</a> 
+                    <i class="ion-edit"><a href="#"> Edit</a></i>
                     </td>
                   </tr>
                   @endforeach
