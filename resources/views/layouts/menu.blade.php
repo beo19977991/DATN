@@ -3,7 +3,7 @@
         <nav>
             <ul>
             <li class="{{Request::is('home*') ? 'active' : ''}}"><a href="/home">Home</a></li>
-            <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="/about">About</a></li>
+            <!-- <li class="{{Request::is('about*') ? 'active' : ''}}"><a href="/about">About</a></li> -->
             <li class="{{Request::is('page/course*') ? 'active' : ''}}"><a href="page/course">Classes</a>
             </li>
             <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="/schedule">Schedule</a></li>

@@ -278,7 +278,27 @@ class PageController extends Controller
         {
             $course->photo="";
         }
+        $arr = [];
+        $course->member = json_encode($arr);
         $course->save();
+        return redirect('page/create_course_update');
+    }
+    public function update_trainer()
+    {
+        $course = Course::all();
+        $trainer = User::where('role','=',2)->get();
+        foreach($course as $c)
+        {
+            foreach($trainer as $tr)
+            {
+                if($c->trainer_id == $tr->id)
+                {
+                    $tr->course_id  = $c->id;
+                    $tr->save();
+                }
+            }
+           
+        }
         return redirect('page/create_course')->with('message','Create Course success !!!');
     }
     public function getCourse()
@@ -297,19 +317,17 @@ class PageController extends Controller
     public function getJoinClass($id)
     {
         $user_id = Auth::user()->id;
-        $user_join_class = User::where('id','=',$user_id)
-                                ->where('role','=',1)
-                                ->first();
-        if($user_join_class->course_id != $id)
+        $user_join_class = User::where('id','=',$user_id)->first();
+        $course = Course::find($id);
+        $arr =json_decode($course->member);
+        if($user_join_class->role === 1 && count($arr) < 10 && $user_join_class->course_id ==0)
         {
             $user_join_class->course_id = $id;
+            array_push($arr, $user_id);
+            $course->member = json_encode($arr);
             $user_join_class->save();
+            $course->save();
         }
         return redirect('page/course/'.$id);
-    }
-    public function getCustomer()
-    {
-        $customers = User::where('role','=',1)->get();
-        return view('customer.customer',['customers'=>$customers]);
     }
 }

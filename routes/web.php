@@ -49,13 +49,23 @@ Route::get('video/{id}','PageController@watchVideo');
 // ================================course=========================================
 Route::get('page/create_course','PageController@getCreateCourse');
 Route::post('page/create_course','PageController@postCreateCourse');
+Route::get('page/create_course_update', 'Pagecontroller@update_trainer');
 
 Route::get('page/course', 'PageController@getCourse');
 
 Route::get('page/course/{id}','PageController@getCourseDetail');
 Route::get('page/join_class/{id}','PageController@getJoinClass');
 // ======================customer manager===================================
-Route::get('page/customer','PageController@getCustomer');
+Route::get('page/customer','StaffController@getCustomer');
+Route::get('page/customer/edit/{id}','StaffController@getEditCustomer');
+Route::post('page/customer/edit/{id}','StaffController@postEditCustomer');
+Route::get('page/customer/delete{id}','StaffController@getDeleteCustomer');
+// ========================Trainer Manager =================================
+Route::get('page/trainer_manager','StaffController@getTrainer');
+// ====================BMR Sheer===============================================
+Route::get('bmr_sheet','StaffController@getBmrSheet');
+// ===============Course Manager =============================================
+Route::get('page/course_manager','StaffController@getCourseManager');
 // ========================================================================
 Route::get('schedule','PageController@getListSchedule');
 
