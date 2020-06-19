@@ -12,6 +12,7 @@ use App\TypeExercise;
 use App\Schedule;
 use App\TypeOfSchedule;
 use App\Course;
+use App\Event;
 use Illuminate\Support\Collection;
 
 
@@ -79,7 +80,7 @@ class PageController extends Controller
     public function getListExercise()
     {
         $typeExercise = TypeExercise::all();
-        $exercise = Exercise::orderBy('created_at','DESC')->paginate(3);
+        $exercise = Exercise::orderBy('created_at','DESC')->get();
         return view('exercise',['exercise'=>$exercise,'typeExercise'=>$typeExercise]);
     }
     public function fetch_data(Request $request)
@@ -287,32 +288,54 @@ class PageController extends Controller
     {
         $course = Course::all();
         $trainer = User::where('role','=',2)->get();
+
         foreach($course as $c)
         {
             foreach($trainer as $tr)
             {
                 if($c->trainer_id == $tr->id)
                 {
-                    $tr->course_id  = $c->id;
-                    $tr->save();
+                    $arr = json_decode($tr->classes_id);
+                    if(in_array($c->id,$arr))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        array_push($arr,$c->id);
+                        $tr->classes_id  = json_encode($arr);
+                        $tr->save();
+                    }
                 }
             }
-           
         }
         return redirect('page/create_course')->with('message','Create Course success !!!');
     }
     public function getCourse()
     {
         $course = Course::all();
-        return view('course.course',['course'=>$course]);
+        $trainers = User::where('role','=',2)->get();
+        return view('course.course',['course'=>$course,'trainers'=>$trainers]);
     }
     public function getCourseDetail($id)
     {
+        $members = [];
+        $arr =[];
+        $events = Event::where('course_id','=',$id)->get();
         $course = Course::find($id);
-        $members = User::where('role','=',1)
-                        ->where('course_id','=',$id)
-                        ->get();
-        return view('course.course_detail',['course'=>$course,'members'=>$members]);
+        $type_exercises = TypeExercise::all();
+        $related_classes = Course::all();
+        $member_of_classes = User::where('role','=',1)->get();
+        foreach($member_of_classes as $mem)
+        {
+            $arr = json_decode($mem->classes_id);
+            if((array_pop($arr)) == $id)
+            {
+                array_push($members, $mem);
+            }
+        }
+        $bg = ['bg-success','bg-warning','bg-info','bg-primary','bg-danger','bg-success','bg-warning','bg-info','bg-primary','bg-danger','bg-warning'];
+        return view('course.course_detail',['course'=>$course,'members'=>$members,'related_classes'=>$related_classes,'type_exercises'=>$type_exercises,'bg'=>$bg,'events'=>$events]);
     }
     public function getJoinClass($id)
     {
@@ -320,11 +343,16 @@ class PageController extends Controller
         $user_join_class = User::where('id','=',$user_id)->first();
         $course = Course::find($id);
         $arr =json_decode($course->member);
-        if($user_join_class->role === 1 && count($arr) < 10 && $user_join_class->course_id ==0)
+        $arr_classes_id = [];
+        $temp = [];
+        $temp = json_decode($user_join_class->classes_id);
+        if($user_join_class->role === 1 && count($arr) < 10 && array_pop($temp) == null && $user_join_class->course_id === 0)
         {
-            $user_join_class->course_id = $id;
+            array_push($arr_classes_id, $id);
+            $user_join_class->classes_id = json_encode($arr_classes_id);
             array_push($arr, $user_id);
             $course->member = json_encode($arr);
+            $user_join_class->course_id = $id;
             $user_join_class->save();
             $course->save();
         }

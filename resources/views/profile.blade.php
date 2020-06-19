@@ -99,6 +99,17 @@
                                     </div>
                                 </div>
                                 @endif
+                                <div class="skill-content-3">
+                                <h3>Class: &ensp;</h3>
+                                @if($user->role == 2)
+                                    @foreach($user->course as $course)
+                                        <a target="_blank" href="{{ route('course_details', ['id' => $course->id]) }}">{{$course->course_name}}</a>
+                                        &ensp;
+                                    @endforeach
+                                @elseif($user->role ==1)
+                                <a href="page/course/{{$user->customer_class->id}}">{{$user->customer_class->course_name}}</a>
+                                @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End Expert tainers area -->
+            <!-- End Expert trainers area -->
             <!-- Start logo showcase area -->
             <div class="logo-showcase-area nav-on-focus">
                 <div class="container">

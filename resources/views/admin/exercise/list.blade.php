@@ -41,7 +41,7 @@
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> 
                                 <a href="admin/exercise/edit/{{$ex->id}}">Edit</a></td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -11,7 +11,7 @@ class Course extends Model
     protected $fillable= [
         'staff_id',
         'trainer_id',
-        'class_name',
+        'course_name',
         'body',
         'photo',
         'price',
@@ -26,7 +26,7 @@ class Course extends Model
     }
     public function trainer()
     {
-        return $this->belongsTo('App\User','trainer_id','id');
+        return $this->belongsTo('App\User','trainer_id');
     }
     public function customer()
     {

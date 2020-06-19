@@ -40,18 +40,17 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Trainer Table</h3>
+                <input type="text" id="myInput" placeholder="Search for names..">
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover myTable">
                   <thead>
                   <tr>
                     <th>Trainer Name</th>
                     <th>Adress</th>
                     <th>Phone</th>
                     <th>Class</th>
-                    <th>Member in Class</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -60,10 +59,13 @@
                     <td>{{$trainer->name}}</td>
                     <td>{{$trainer->address}}</td>
                     <td>{{$trainer->phone}}</td>
-                    <td>{{$trainer->course->course_name}}</td>
-                    <td>{{count(json_decode($trainer->course->member))}}</td>
-                    <td><i class="ion-ios-trash-outline"></i><a href=""> Delete</a> 
-                    <!-- <i class="ion-edit"><a href=""> Edit</a></i> -->
+                    <td>
+                    @foreach ($trainer->course as $course) 
+                    <a target="_blank" href="{{ route('course_details', ['id' => $course->id]) }}">{{$course->course_name . "  "}}</a>
+                      (Quantity: {{ count(json_decode($course->member)) }})
+                      &ensp;&ensp;&ensp;
+                      <br>
+                    @endforeach
                     </td>
                   </tr>
                   @endforeach
@@ -109,6 +111,14 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
+    });
+    $('#myInput').keyup(function(event){
+      event.preventDefault();
+      /* Act on the event */
+      var tukhoa = $(this).val().toLowerCase();
+      $('.myTable tr').filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa)>-1);
+      });
     });
   });
 </script>

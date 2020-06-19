@@ -164,57 +164,56 @@
             </div>
         </div>
         <!-- End class schedule area -->
-        <!-- Start what clients say area  -->
-        <div class="what-client-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="section-title">
-                            <h2>What Client’s Say</h2>
-                        </div>
-                        <div class="gym-carousel dot-control" data-loop="true" data-items="2" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="false" data-r-x-small-dots="true" data-r-x-medium="1" data-r-x-medium-nav="false" data-r-x-medium-dots="true" data-r-small="2" data-r-small-nav="false" data-r-small-dots="true" data-r-medium="2" data-r-medium-nav="false" data-r-medium-dots="true" data-r-large="2" data-r-large-nav="false" data-r-large-dots="true">
-                            <div class="single-client-say">
-                                <div class="pull-left client-picture">
-                                    <img src="img/client1.jpg" alt="client1">
+        <!-- Start Related Classes area  -->
+        <div class="related-classes-area nav-on-hover padding-space">
+                                <div class="section-title">
+                                    <h2>Related Classes</h2>
                                 </div>
-                                <div class="media-body client-content">
-                                    <h3>Honey Jisa <span> / CEO</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectet ad elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magnaLorem ipsum dolor sit amet, consectet ad elit sed onummy.</p>
+                                <div class="gym-carousel nav-control-top zoom-gallery"
+                                    data-loop="true"
+                                    data-items="3"
+                                    data-margin="15"
+                                    data-autoplay="false"
+                                    data-autoplay-timeout="10000"
+                                    data-smart-speed="2000"
+                                    data-dots="false"
+                                    data-nav="true"
+                                    data-nav-speed="false"
+                                    data-r-x-small="1"
+                                    data-r-x-small-nav="true"
+                                    data-r-x-small-dots="false"
+                                    data-r-x-medium="1"
+                                    data-r-x-medium-nav="true"
+                                    data-r-x-medium-dots="false"
+                                    data-r-small="2"
+                                    data-r-small-nav="true"
+                                    data-r-small-dots="false"
+                                    data-r-medium="3"
+                                    data-r-medium-nav="true"
+                                    data-r-medium-dots="false"
+                                    data-r-large="3"
+                                    data-r-large-nav="true"
+                                    data-r-large-dots="false">
+                                    @foreach($related_classes as $rel_classes)
+                                    <div class="single-related-classes">
+                                        <div class="classes-img">
+                                            <a href="#">
+                                                <img src="upload/course/photo/{{$rel_classes->photo}}" alt="">
+                                            </a>
+                                            <div class="classes-overlay">
+                                                <a class="elv-zoom" href="upload/course/photo/{{$rel_classes->photo}}" title="Classic Yoga"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="classes-title">
+                                            <h3><a href="#">{{$rel_classes->course_name}}</a></h3>
+                                            <p class="date"><span>Start: </span>{{ \Carbon\Carbon::parse($rel_classes->start_time)->format('d/m/Y')}}</p>
+                                            <p class ="date"><span>End: </span>{{ \Carbon\Carbon::parse($rel_classes->end_time)->format('d/m/Y')}}</p>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="single-client-say">
-                                <div class="pull-left client-picture">
-                                    <img src="img/client2.jpg" alt="client2">
-                                </div>
-                                <div class="media-body client-content">
-                                    <h3>Tahmid Alom <span> / Founder</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectet ad elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magnaLorem ipsum dolor sit amet, consectet ad elit sed onummy.</p>
-                                </div>
-                            </div>
-                            <div class="single-client-say">
-                                <div class="pull-left client-picture">
-                                    <img src="img/client1.jpg" alt="client1">
-                                </div>
-                                <div class="media-body client-content">
-                                    <h3>Honey Jisa <span> / CEO</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectet ad elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magnaLorem ipsum dolor sit amet, consectet ad elit sed onummy.</p>
-                                </div>
-                            </div>
-                            <div class="single-client-say">
-                                <div class="pull-left client-picture">
-                                    <img src="img/client2.jpg" alt="client2">
-                                </div>
-                                <div class="media-body client-content">
-                                    <h3>Honey Jisa <span> / CEO</span></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectet ad elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magnaLorem ipsum dolor sit amet, consectet ad elit sed onummy.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End what clients say area -->
+        <!-- End Related Classes area -->
         <!-- Start Expert trainers area -->
         <div class="expert-trainer-area nav-on-hover">
             <div class="container">
@@ -262,11 +261,11 @@
                 <div class="row">
                     @foreach($course as $course)
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hvr-float-shadow">
-                            <div class="price-table-box">
-                                <span>{{$course->courseName}}</span>
-                                <h3>{{$course->time}}</h3>
-                                <h4><span>Price:</span>{{$course->price}}.000 vnd</h4>
-                                <h3><span>Discount: </span>{{$course->discount}}%</h3>
+                            <div class="price-table-box ">
+                                <span>{{$course->course_name}}</span>
+                                <h3> <span> Price: </span> &nbsp; {{$course->price . " vnd"}}</h3>
+                                <h3> <span> Discount: </span> &nbsp; {{$course->discount * 100 ." %"}}</h3>
+                                <h3> <span> Pay: </span>  {{ $course->price - ($course->price * $course->discount) ." vnd" }}</h3>
                                 <a class="custom-button" data-title="Become A Member" href="#">Details</a>
                             </div>
                         </div>   
@@ -357,7 +356,7 @@
                                 <h3><span>Fitness Classes</span> This Summer.</h3>
                                 <p>Pay Now and
                                     <br> Get <span>35%</span> Discount</p>
-                                <a class="custom-button" data-title="Become A Member" href="#">Become A Member</a>
+                                <a class="custom-button" target="_blank" data-title="Become A Member" href="{{ route('course') }}">Become A Member</a>
                             </div>
                         </div>
                     </div>
@@ -373,8 +372,14 @@
                 </div>
             </div>
             <div class="container">
-                <div class="gym-carousel nav-control-top nav-on-hover" data-loop="true" data-items="4" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="4" data-r-large-nav="true" data-r-large-dots="false">
-                    
+                <div class="gym-carousel nav-control-top nav-on-hover" data-loop="true" data-items="4" data-margin="15" 
+                data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" 
+                data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" 
+                data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" 
+                data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" d
+                ata-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" 
+                data-r-medium-dots="false" data-r-large="4" data-r-large-nav="true" 
+                data-r-large-dots="false">
                     @foreach($product as $product)
                     <div class="single-product-store">
                         <div class="single-product">
@@ -406,20 +411,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 counter1-box wow fadeInDown" data-wow-duration=".5s" data-wow-delay=".20s">
-                        <h2 class="counter">1520</h2>
+                        <h2 class="counter">{{$count_customer}}</h2>
                         <p>Satisfied Customers</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 counter1-box wow fadeInDown" data-wow-duration=".5s" data-wow-delay=".40s">
-                        <h2 class="counter">23</h2>
+                        <h2 class="counter">{{$count_trainer}}</h2>
                         <p>Trainers</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 counter1-box wow fadeInDown" data-wow-duration=".5s" data-wow-delay=".60s">
-                        <h2 class="counter">199</h2>
-                        <p>Received Awards</p>
+                        <h2 class="counter">{{$count_exercise}}</h2>
+                        <p>Exercise</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 counter1-box wow fadeInDown" data-wow-duration=".5s" data-wow-delay=".80s">
-                        <h2 class="counter">130</h2>
-                        <p>Equipments</p>
+                        <h2 class="counter">{{$count_class}}</h2>
+                        <p>Classes</p>
                     </div>
                 </div>
             </div>
@@ -434,54 +439,20 @@
             </div>
             <div class="container">
                 <div class="gym-carousel nav-control-top" data-loop="true" data-items="3" data-margin="30" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
+                    @foreach($latest_news as $ln)
                     <div class="single-latest-news">
                         <div class="single-news">
-                            <div class="single-image"><img src="img/news1.jpg" alt="news1"></div>
-                            <div class="date">20
-                                <br>Jan
-                                <br>2016</div>
+                            <div class="single-image"><img src="upload/post/photo/{{$ln->photo}}" alt="news1"></div>
+                            <div class="date">{{$ln->updated_at->format('d')}}
+                                <br>{{$ln->updated_at->format('M')}}
+                                <br>{{$ln->updated_at->format('Y')}}</div>
                         </div>
                         <div class="news-content">
-                            <h3><a href="single-news.html">Body Combat</a></h3>
-                            <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
+                            <h3><a href="{{ route('news_detail',['id'=>$ln->id]) }}">{{$ln->title}}</a></h3>
+                            <p>{{$ln->preview}}</p>
                         </div>
                     </div>
-                    <div class="single-latest-news">
-                        <div class="single-news">
-                            <div class="single-image"><img src="img/news2.jpg" alt="news2"></div>
-                            <div class="date">20
-                                <br>Jan
-                                <br>2016</div>
-                        </div>
-                        <div class="news-content">
-                            <h3><a href="single-news.html">Zumba Fitness</a></h3>
-                            <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                        </div>
-                    </div>
-                    <div class="single-latest-news">
-                        <div class="single-news">
-                            <div class="single-image"><img src="img/news3.jpg" alt="news3"></div>
-                            <div class="date">20
-                                <br>Jan
-                                <br>2016</div>
-                        </div>
-                        <div class="news-content">
-                            <h3><a href="single-news.html">Running Practice</a></h3>
-                            <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                        </div>
-                    </div>
-                    <div class="single-latest-news">
-                        <div class="single-news">
-                            <div class="single-image"><img src="img/news1.jpg" alt="news1"></div>
-                            <div class="date">20
-                                <br>Jan
-                                <br>2016</div>
-                        </div>
-                        <div class="news-content">
-                            <h3><a href="single-news.html">Body Combat</a></h3>
-                            <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

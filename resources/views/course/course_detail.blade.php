@@ -1,4 +1,17 @@
 @extends('layouts.app', ['title' => 'Course'])
+@section('styles')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fullcalendar/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fullcalendar-daygrid/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fullcalendar-timegrid/main.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fullcalendar-bootstrap/main.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+@endsection
 @section('content')
 <!-- Start Inner Banner area -->
     <div class="inner-banner-area">
@@ -9,8 +22,8 @@
                 </div>
                 <div class="breadcrum-area">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="classes.html">Classes</a></li>
+                        <li><a href="">Home</a></li>
+                        <li><a href="{{ route('course') }}">Classes</a></li>
                         <li class="active">Class Details</li>
                     </ul>
                 </div>
@@ -18,6 +31,27 @@
         </div>
     </div>
 <!-- End Inner Banner area -->
+<!-- modal -->
+<div class="modal" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure you join this class?</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
             <!-- Start details classes area -->
             <div class="classes-detail-area padding-top">
                 <div class="container">
@@ -55,11 +89,85 @@
                                         <h3>Member of Classes</h3>
                                         <ul class="choose-list">
                                         @foreach($members as $member)
-                                        <li>{{$member->username}}</li>
+                                        <li><a href="page/profile/{{$member->id}}">{{$member->username}}</a></li>
                                         @endforeach
                                         </ul>
-                                        <a href="page/join_class/{{$course->id}}" class="custom-button" data-title="Join Class">Join Class</a>
+                                        <a href="page/join_class/{{$course->id}}" id="join-class" class="custom-button" data-title="Join Class">Join Class</a>   
                                     </div>
+ <!-- calendar -->
+    <!-- Main content -->
+    <div class="single-page-area padding-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                      <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Main content -->
+                        <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                            <div class="col-md-3">
+                                <div class="sticky-top mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <!-- the events -->
+                                    <div id="external-events" style="display:none">
+                                        @foreach($type_exercises as $index=>$type_exercise)
+                                            @foreach($bg as $i=>$item)
+                                                @if($index=== $i)
+                                                <div class="external-event {{$item}}">{{$type_exercise->typeExerciseName}}</div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                        <div class="checkbox" style="display:none">
+                                        <label for="drop-remove" >
+                                            <input type="checkbox" id="drop-remove" >
+                                            remove after drop
+                                        </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                                <div class="card">
+                                    <div class="card-body">
+                                    <!-- /btn-group -->
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                    <!-- /input-group -->
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="card card-primary">
+                                <div class="card-body p-0">
+                                    <!-- THE CALENDAR -->
+                                    <div id="calendar"></div>
+                                </div>
+                                <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- /.content-wrapper -->                                  
+<!-- end calendar -->
                                 </div>
                             </div>
                             <!-- Start Related classes -->
@@ -92,6 +200,7 @@
                                     data-r-large="3"
                                     data-r-large-nav="true"
                                     data-r-large-dots="false">
+                                    @foreach($related_classes as $rel_classes)
                                     <div class="single-related-classes">
                                         <div class="classes-img">
                                             <a href="#">
@@ -102,120 +211,128 @@
                                             </div>
                                         </div>
                                         <div class="classes-title">
-                                            <h3><a href="single-classes.html">Classic Yoga</a></h3>
-                                            <p class="date">09.00 am - 10.00 Am</p>
+                                            <h3><a href="#">{{$rel_classes->course_name}}</a></h3>
+                                            <p class="date"><span>Start: </span>{{ \Carbon\Carbon::parse($rel_classes->start_time)->format('d/m/Y')}}</p>
+                                            <p class ="date"><span>End: </span>{{ \Carbon\Carbon::parse($rel_classes->end_time)->format('d/m/Y')}}</p>
                                         </div>
                                     </div>
-                                    <div class="single-related-classes">
-                                        <div class="classes-img">
-                                            <a href="#">
-                                                <img src="img/classes/running.jpg" alt="">
-                                            </a>
-                                            <div class="classes-overlay">
-                                                <a class="elv-zoom" href="img/classes/running.jpg" title="Running"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="classes-title">
-                                            <h3><a href="single-classes.html">Running</a></h3>
-                                            <p class="date">09.00 am - 10.00 Am</p>
-                                        </div>
-                                    </div>
-                                    <div class="single-related-classes">
-                                        <div class="classes-img">
-                                            <a href="#">
-                                                <img src="img/classes/meditation.jpg" alt="">
-                                            </a>
-                                            <div class="classes-overlay">
-                                                <a class="elv-zoom" href="img/classes/meditation.jpg" title="Meditation"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="classes-title">
-                                            <h3><a href="single-classes.html">Meditation</a></h3>
-                                            <p class="date">09.00 am - 10.00 Am</p>
-                                        </div>
-                                    </div>
-                                    <div class="single-related-classes">
-                                        <div class="classes-img">
-                                            <a href="#">
-                                                <img src="img/classes/karate.jpg" alt="">
-                                            </a>
-                                            <div class="classes-overlay">
-                                                <a class="elv-zoom" href="img/classes/karate.jpg" title="Classic Yoga"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="classes-title">
-                                            <h3><a href="single-classes.html">Classic Yoga</a></h3>
-                                            <p class="date">09.00 am - 10.00 Am</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- End Related classes -->
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3">
-                            <div class="right-sidebar">
-                                <div class="single-sidebar">
-                                    <h3>Search</h3>
-                                    <div class="sidebar-search">
-                                        <input type="text" placeholder="Search here...">
-                                        <span><button type="submit"><i class="fa fa-search"></i></button></span>
-                                    </div>
-                                </div>
-                                <div class="single-sidebar">
-                                    <h3>Categories</h3>
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="classes.html">Fitness Classes</a></li>
-                                            <li><a href="classes.html">Body Building</a></li>
-                                            <li><a href="classes.html">Trainer</a></li>
-                                            <li><a href="classes.html">Running</a></li>
-                                            <li><a href="classes.html">Yoga</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-sidebar">
-                                    <h3>Happy Client’s</h3>
-                                    <div class="happy-clients">
-                                        <div class="single-clients">
-                                            <p><i class="fa fa-quote-left" aria-hidden="true"></i></p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntua.</p>
-                                            <div class="client-heading">
-                                                <h4><a href="#">Kazi Fahim</a></h4>
-                                                <p>CEO PsdBoss</p>
-                                            </div>
-                                        </div>
-                                        <div class="single-clients">
-                                            <p><i class="fa fa-quote-left" aria-hidden="true"></i></p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntua.</p>
-                                            <div class="client-heading">
-                                                <h4><a href="#">Devid Manik</a></h4>
-                                                <p>CEO PsdBoss</p>
-                                            </div>
-                                        </div>
-                                        <div class="single-clients">
-                                            <p><i class="fa fa-quote-left" aria-hidden="true"></i></p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntua.</p>
-                                            <div class="client-heading">
-                                                <h4><a href="#">Devid Hogg</a></h4>
-                                                <p>CEO PsdBoss</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-sidebar sidebar-last">
-                                    <div class="join-us">
-                                        <img src="img/join-us.jpg" alt="">
-                                        <div class="join-content">
-                                            <div class="percent"><span>25%</span> off</div>
-                                            <p>Dsed do eiusmod tempor incididunt.</p>
-                                            <a class="custom-button" href="#" data-title="Join Us Now!">Join Us Now!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End details classes area -->
+@endsection
+@section('scripts')
+<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ asset('adminlte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+<!-- fullCalendar 2.2.5 -->
+<script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/fullcalendar/main.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/fullcalendar-daygrid/main.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/fullcalendar-timegrid/main.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/fullcalendar-interaction/main.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/fullcalendar-bootstrap/main.min.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    /* initialize the external events
+     -----------------------------------------------------------------*/
+    function ini_events(ele) {
+      ele.each(function () {
+
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // it doesn't need to have a start or end
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        }
+
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject)
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex        : 1070,
+          revert        : true, // will cause the event to go back to its
+          revertDuration: 0  //  original position after the drag
+        })
+
+      })
+    }
+
+    ini_events($('#external-events div.external-event'))
+
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+    //Date for the calendar events (dummy data)
+    var date = new Date()
+    var d    = date.getDate(),
+        m    = date.getMonth(),
+        y    = date.getFullYear()
+
+    var Calendar = FullCalendar.Calendar;
+    var Draggable = FullCalendarInteraction.Draggable;
+
+    var containerEl = document.getElementById('external-events');
+    var checkbox = document.getElementById('drop-remove');
+    var calendarEl = document.getElementById('calendar');
+
+    // initialize the external events
+    // -----------------------------------------------------------------
+
+    new Draggable(containerEl, {
+      itemSelector: '.external-event',
+      eventData: function(eventEl) {
+        console.log(eventEl);
+        return {
+          title: eventEl.innerText,
+          backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+          borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+          textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
+        };
+      }
+    });
+
+    var calendar = new Calendar(calendarEl, {
+      plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
+      header    : {
+        left  : 'prev,next today',
+        center: 'title',
+        right : 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      'themeSystem': 'bootstrap',
+      //Random default events
+      events    : [
+          @foreach ($events as $event)
+        {
+          title          : '{{$event->title}}',
+          start          : new Date('{{$event->start}}'),
+          end            : new Date('{{$event->end}}'),
+          backgroundColor: '#f56954', //red
+          backgroundColor: '#f56954', //red
+          borderColor    : '#f56954', //red
+          allDay         : false
+        },
+        @endforeach
+      ],
+      editable  : false,
+      droppable : false, // this allows things to be dropped onto the calendar !!!
+      eventReceive: function(info) {
+        $(".title").text(info.event.title);
+        let date = info.event.start
+      },
+    });
+    calendar.render();
+});
+</script>
 @endsection

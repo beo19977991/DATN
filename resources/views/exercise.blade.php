@@ -25,15 +25,28 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="isotop-classes-tab isotop-btn"> 
-                                <a href="#" data-filter="*" class="current">All</a>
+                                <a href="#" data-filter="*" data-id="1" class="link current">All</a>
                                 @foreach($typeExercise as $type)
-                                    <a href="" >{{$type->typeExerciseName}}</a>
+                                    <a href="" class="link" title="{{$type->id}}">{{$type->typeExerciseName}}</a>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <div class="row portfolioContainer gallery-wrapper zoom-gallery" id="table_data">
-                        @include('exercises.exercise_data')
+                    <div class="portfolioContainer zoom-gallery">
+                    @foreach($exercise as $ex)
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 yaga meditation item-{{$ex->idExerciseType }}">
+                            <div class="">
+                                <video class="img-responsive" controls>
+                                    <source src="upload/exercise/video/{{$ex->video}}">
+                                </video>
+                                <div class="classes-title">
+                                    <h3>Muscle:<a href="#">{{" ".$ex->typeExercise->typeExerciseName}}</a></h3>
+                                    <h3>Trainer:<a href="">{{" ".$ex->user->username}}</a></h3>
+                                    <h3><a href="video/{{$ex->id}}">{{$ex->title}}</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                     </div>
                 </div>              
             </div>
@@ -43,22 +56,14 @@
 @section('ajax')
 <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
 <script>
-    $(document).ready(function(){
-        $(document).on('click', '.pagination a', function(event) {
-            var page = $(this).attr('href').split('page=')[1];
-            console.log(page);
-            event.preventDefault();
-            fetch_data(page);
-        });
-        function fetch_data(page){
-            $.ajax({
-                url:"/page/exercise/pagination/fetch_data?page="+page,
-                success:function(data)
-                {
-                    $('#table_data').html(data);
-                }
-            });
+        $('.link').click(function(e) {
+        if ($(this).attr("data-id")) {
+            $(".meditation").show();
+            return;
         }
+        $('.meditation').hide();
+        $('.item-' + $(this).attr('title')).show();
+        e.preventDefault();
     });
 </script>
 @endsection

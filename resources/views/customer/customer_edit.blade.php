@@ -58,27 +58,35 @@
                     </div>
                     <div class="form-group">
                         <label>Class</label>
-                        <input type="text" class="form-control"  disabled value="{{$customer->course->course_name}}">
+                        <select name="classes" id="classes">
+                        @foreach($classes as $class)
+                        <option value="{{$class->id}}" 
+                        @if($class->id === $customer->customer_class->id)
+                        {{"selected"}} 
+                        @endif
+                        >{{$class->course_name}}</option>
+                        @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Trainer</label>
-                        <input type="text" class="form-control"  disabled value="{{$customer->course->trainer->name}}">
+                        <input type="text" class="form-control" id="trainer"  disabled value="{{$customer->customer_class->trainer->name}}">
                     </div>
                     <div class="form-group">
                         <label>Start Time</label>
-                        <input type="text" class="form-control" id="start_time" placeholder="{{\Carbon\Carbon::parse($customer->course->start_time)->format('d/m/Y')}}"name="start_time" />
+                        <input type="text" class="form-control" id="start_time" disabled placeholder="{{\Carbon\Carbon::parse($customer->customer_class->start_time)->format('d/m/Y')}}"name="start_time" />
                     </div>
                     <div class="form-group">
                         <label>End Time</label>
-                        <input type="text" class="form-control" id="end_time"placeholder="{{\Carbon\Carbon::parse($customer->course->end_time)->format('d/m/Y')}}" name="end_time" />
+                        <input type="text" class="form-control" id="end_time" disabled placeholder="{{\Carbon\Carbon::parse($customer->customer_class->end_time)->format('d/m/Y')}}" name="end_time" />
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="text" class="form-control" id="end_time"placeholder="{{$customer->course->price}}" name="end_time" />
+                        <input type="text" class="form-control" id="end_time" disabled placeholder="{{$customer->customer_class->price}}" name="end_time" />
                     </div>
                     <div class="form-group">
                         <label>Discount</label>
-                        <input type="text" class="form-control" id="end_time"placeholder="{{$customer->course->discount}}" name="end_time" />
+                        <input type="text" class="form-control" id="end_time" disabled placeholder="{{$customer->customer_class->discount}}" name="end_time" />
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -117,6 +125,14 @@
         $( function() {
         $( "#start_time" ).datepicker({ dateFormat: 'yy-mm-dd' });
         $( "#end_time" ).datepicker({ dateFormat: 'yy-mm-dd' });
+        });
+        $(document).ready(function(){
+          $("#classes").change(function(){
+            let id_classes = $(this).val();
+            $.get("ajax/classes/"+id_classes, function(data){
+              $("#trainer").html(data);
+            });
+          });
         });
 </script>
 @stop

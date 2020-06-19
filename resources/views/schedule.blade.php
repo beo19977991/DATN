@@ -46,7 +46,7 @@
                                             <li>
                                                 <a href="page/profile/{{$s->user->id}}">{{$s->user->username}}</a>
                                             </li>
-                                            <li><a href="#">Join Now!</a></li>
+                                            <li><a href="{{route('exercise')}}">Join Now!</a></li>
                                         </ul>
                                         @endforeach
                                     </div>
@@ -57,9 +57,6 @@
                     </div>
                 </div>
             </div>
-            <div id='calendar-container'>
-    <div id='calendar'></div>
-  </div>
 <script>
     function openTab(id) {
     var i;

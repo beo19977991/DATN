@@ -31,7 +31,6 @@
                                 <option value="{{$type->id}}"> {{$type->typeExerciseName}}</option>
                                 @endforeach
                                 </select>
-
                             </div>
                             <div class="form-group">
                                 <label>Title</label>
