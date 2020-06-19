@@ -40,10 +40,13 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Customer Table</h3>
+                &nbsp;&nbsp;&nbsp;
+                <h3><a href="{{ route('add_customer') }}">Add Customer</a></h3>
+                <input type="text" id="myInput" placeholder="Search for names..">
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover myTable">
                   <thead>
                   <tr>
                     <th>Customer Name</th>
@@ -63,26 +66,24 @@
                   <tbody>
                   @foreach($customers as $customer)
                   <tr>
-                    <td>{{$customer->name}}</td>
+                    <td><a target="_blank" href="{{ route('profile',['id' => $customer->id]) }}">{{$customer->name}}</a></td>
                     <td>{{$customer->address}}</td>
                     <td>{{$customer->phone}}</td>
-                    <td>{{$customer->course->course_name}}</td>
-                    <td>{{$customer->course->trainer->name}}</td>
-                    <td>{{\Carbon\Carbon::parse($customer->course->start_time)->format('d/m/Y')}}</td>
-                    <td>{{\Carbon\Carbon::parse($customer->course->end_time)->format('d/m/Y')}}</td>
-                    <td>{{$customer->course->price}}</td>
-                    <td>{{$customer->course->discount}}</td>
-                    <td>{{$customer->course->price - ($customer->course->price * $customer->course->discount)}}</td>
-                    @if(strtotime(\Carbon\Carbon::parse($customer->course->end_time)->format('d/m/Y')) < strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
+                    <td>{{$customer->customer_class->course_name}}</td>
+                    <td>{{$customer->customer_class->trainer->name}}</td>
+                    <td>{{\Carbon\Carbon::parse($customer->customer_class->start_time)->format('d/m/Y')}}</td>
+                    <td>{{\Carbon\Carbon::parse($customer->customer_class->end_time)->format('d/m/Y')}}</td>
+                    <td>{{$customer->customer_class->price}}</td>
+                    <td>{{$customer->customer_class->discount}}</td>
+                    <td>{{$customer->customer_class->price - ($customer->customer_class->price * $customer->customer_class->discount)}}</td>
+                    @if(strtotime(\Carbon\Carbon::parse($customer->customer_class->end_time)->format('d/m/Y')) > strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
                       <td style="background-color:skyblue"></td>
-                    @elseif(strtotime($customer->course->end_time) === strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
+                    @elseif(strtotime($customer->customer_class->end_time) === strtotime(\Carbon\Carbon::parse($today)->format('d/m/Y')))
                       <td style="background-color:yellow"></td>
                     @else
                       <td style="background-color:red"></td>
                     @endif
-                    <td><i class="ion-ios-trash-outline"></i><a href="page/customer/delete{{$customer->id}}"> Delete</a> 
-                    <i class="ion-edit"><a href="page/customer/edit/{{$customer->id}}"> Edit</a></i>
-                    </td>
+                    <td> <i class="ion-edit"><a href="page/customer/edit/{{$customer->id}}"> Edit</a></i></td>
                   </tr>
                   @endforeach
                   </tfoot>
@@ -128,6 +129,15 @@
       "autoWidth": false,
       "responsive": true,
     });
+    $('#myInput').keyup(function(event){
+      event.preventDefault();
+      /* Act on the event */
+      var tukhoa = $(this).val().toLowerCase();
+      $('.myTable tr').filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa)>-1);
+      });
+    });
+
   });
 </script>
 @endsection

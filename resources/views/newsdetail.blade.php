@@ -67,6 +67,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </br>
                                         @endforeach
                                         @if(isset($user_login))
                                         <div class="leave-comment">
@@ -194,7 +195,7 @@
                     alert('Please write a Comment First!');
                 }
                 else{
-                    $(".comment-section").append('<div class="comment-section"><div class="pull-left comment-image"><img src="'+url_photo+'" alt=""></div><div class="media-body comment-content"><h4>'+username+'</h4> <div class="date-time">'+formatted_date+' '+formated_time+'</div> <p>'+commenttext+'</p><div class="reply"> <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a></div></div></div>');
+                    $(".comment-section").append('</br><div class="comment-section"><div class="pull-left comment-image"><img src="'+url_photo+'" alt=""></div><div class="media-body comment-content"><h4>'+username+'</h4> <div class="date-time">'+formatted_date+' '+formated_time+'</div> <p>'+commenttext+'</p><div class="reply"> <i class="fa fa-mail-forward" aria-hidden="true"></i><a href="#">Reply</a></div></div></div>');
                     
                     $.ajax({
                         type: 'POST',

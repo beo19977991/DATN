@@ -9,8 +9,8 @@
             <li class="{{Request::is('schedule*') ? 'active' : ''}}"><a href="/schedule">Schedule</a></li>
             <li class="{{Request::is('page/trainer*') ? 'active' : ''}}"><a href="page/trainer.html">Trainers</a></li>
             <li class="{{Request::is('news*') ? 'active' : ''}}"><a href="/news">News</a></li>
-            <li class="{{Request::is('page/exercise*') ? 'active' : ''}}"><a href="page/exercise/pagination">Exercise</a></li>
-            <li class="{{Request::is('contact*') ? 'active' : ''}}"><a href="contact">Contact</a></li>
+            <li class="{{Request::is('page/exercise*') ? 'active' : ''}}"><a href="page/exercise">Exercise</a></li>
+            <li class="{{Request::is('product*') ? 'active' : ''}}"><a href="product">Product</a></li>
             <li>
                 <div class="header-top-search search-box">
                     <form>

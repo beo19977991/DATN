@@ -115,6 +115,13 @@
                                                     <li>
                                                         <a href="page/course_manager"><i class="fa fa-user-secret fa-fw"></i>Course Manager</a>
                                                     </li>
+                                                    @elseif($user_login->role==2)
+                                                    <li>
+                                                        <a href="manager/exercise">Exercise Manager</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="manager/classes/calendar">Schedule Manager</a>
+                                                    </li>
                                                     @endif
                                                     <li>
                                                         <a href="user/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>

@@ -40,10 +40,13 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Course Table</h3>
+                &nbsp;&nbsp;&nbsp;
+                <h3><a href="{{ route('create_classes') }}">Add Classes</a></h3>
+                <input type="text" id="myInput" placeholder="Search for names..">
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover myTable">
                   <thead>
                   <tr>
                     <th>Course Name</th>
@@ -60,16 +63,16 @@
                   <tbody>
                   @foreach($courses as $course)
                   <tr>
-                    <td>{{$course->course_name}}</td>
-                    <td>{{$course->trainer->name}}</td>
+                    <td><a target="_blank" href="{{ route('course_details', ['id' => $course->id]) }}">{{$course->course_name}}</a></td>
+                    <td><a target="_blank" href="{{ route('profile',['id' => $course->trainer->id]) }}">{{$course->trainer->name}}</a></td>
                     <td>{{\Carbon\Carbon::parse($course->start_time)->format('d/m/Y')}}</td>
                     <td>{{\Carbon\Carbon::parse($course->end_time)->format('d/m/Y')}}</td>
                     <td>{{$course->price}}</td>
                     <td>{{$course->discount}}</td>
                     <td>{{$course->price - ($course->price * $course->discount)}}</td>
                     <td>{{count(json_decode($course->member)) ."/10"}}</td>
-                    <td><i class="ion-ios-trash-outline"></i><a href="#"> Delete</a> 
-                    <i class="ion-edit"><a href="#"> Edit</a></i>
+                    <td><i class="ion-ios-trash-outline"></i><a href="page/course_manager/delete{{$course->id}}"> Delete</a> 
+                    <i class="ion-edit"><a href="page/course_manager/edit/{{$course->id}}"> Edit</a></i>
                     </td>
                   </tr>
                   @endforeach
@@ -115,6 +118,14 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
+    });
+    $('#myInput').keyup(function(event){
+      event.preventDefault();
+      /* Act on the event */
+      var tukhoa = $(this).val().toLowerCase();
+      $('.myTable tr').filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa)>-1);
+      });
     });
   });
 </script>

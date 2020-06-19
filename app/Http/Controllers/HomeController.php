@@ -11,11 +11,13 @@ use App\Schedule;
 use App\User;
 use App\Course;
 use App\Product;
+use App\Post;
 
 class HomeController extends Controller
 {
     public function getHome()
     {
+        $related_classes = Course::orderby('id', 'DESC')->take(3)->get();
         $typeSchedule= TypeOfSchedule::orderBy('id','DESC')
                         ->take(3)
                         ->get();
@@ -35,14 +37,28 @@ class HomeController extends Controller
         $index = 0;
         $trainer = User::where('role','=','2')
                     ->get();
-        $course = Course::orderBy('id','DESC')
+        $course = Course::orderBy('price','DESC')
                     ->take(3)
                     ->get();
         $product = Product::orderBy('id','DESC')
                             ->get();
+        $customer_user = User::where('role','=','1')->get();
+        $trainer_user = User::where('role','=','2')->get();
+        $class = Course::all();
+        $exercises = Exercise::all();
+        $count_customer = count($customer_user);
+        $count_trainer = count($trainer_user);
+        $count_class = count($class);
+        $count_exercise = count($exercise);
+        $latest_news = Post::orderBy('updated_at','DESC')
+                                    ->where('active','=','1')
+                                    ->take(3)                           
+                                    ->get();
         return view('index',['typeSchedule'=>$typeSchedule,'exercise'=>$exercise,'data'=>$data,
                              'index'=>$index, 'schedule'=>$schedule,'trainer'=>$trainer,'course'=>$course,
-                             'product'=>$product,                         
+                             'product'=>$product, 'related_classes'=> $related_classes, 'count_exercise'=>$count_exercise,
+                             'count_customer'=>$count_customer,'count_trainer'=>$count_trainer,'count_class'=>$count_class,
+                             'latest_news'=>$latest_news,
                              ]);
     }
 }

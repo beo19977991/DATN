@@ -23,18 +23,17 @@ Route::get('/home', 'HomeController@getHome')->name('home');
 Route::get('/news','NewsController@getListNews');
 Route::get('news/fetch_data','NewsController@fetch_data');
 
-Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail');
+Route::get('/news-detail/{id}','NewsDetailController@getNewsDetail')->name('news_detail');
 Route::post('postcomment','CommentController@postComment')->name('postcomment');
 Route::post('post/like','NewsDetailController@likePost')->name('post.like');
 // =========================================================================
 Route::get('page/trainer.html', 'PageController@getListTrainer');
-Route::get('page/profile/{id}', 'PageController@getProfile');
+Route::get('page/profile/{id}', 'PageController@getProfile')->name('profile');
 
 Route::get('page/create_post', 'PageController@getCreatePost');
 Route::post('page/create_post', 'PageController@postCreatePost');
 
-Route::get('page/exercise/pagination','PageController@getListExercise');
-Route::get('page/exercise/pagination/fetch_data','PageController@fetch_data');
+Route::get('page/exercise','PageController@getListExercise')->name('exercise');
 
 Route::get('page/create_exercise','PageController@getCreateExercise');
 Route::post('page/create_exercise', 'PageController@postCreateExercise');
@@ -47,26 +46,45 @@ Route::get('page/delete_exercise/{id}','PageController@getDeleteExercise');
 Route::get('video/{id}','PageController@watchVideo');
 
 // ================================course=========================================
-Route::get('page/create_course','PageController@getCreateCourse');
+Route::get('page/create_course','PageController@getCreateCourse')->name('create_classes');
 Route::post('page/create_course','PageController@postCreateCourse');
 Route::get('page/create_course_update', 'Pagecontroller@update_trainer');
 
-Route::get('page/course', 'PageController@getCourse');
+Route::get('page/course', 'PageController@getCourse')->name("course");
 
-Route::get('page/course/{id}','PageController@getCourseDetail');
+Route::get('page/course/{id}','PageController@getCourseDetail')->name('course_details');
 Route::get('page/join_class/{id}','PageController@getJoinClass');
 // ======================customer manager===================================
-Route::get('page/customer','StaffController@getCustomer');
+Route::get('page/customer','StaffController@getCustomer')->name('customer');
 Route::get('page/customer/edit/{id}','StaffController@getEditCustomer');
 Route::post('page/customer/edit/{id}','StaffController@postEditCustomer');
-Route::get('page/customer/delete{id}','StaffController@getDeleteCustomer');
+
+Route::get('ajax/classes/{id_classes}','StaffController@getClasses');
+
+Route::get('page/customer/add','StaffController@getAddCustomer')->name('add_customer');
+Route::post('page/customer/add','StaffController@postAddCustomer');
 // ========================Trainer Manager =================================
 Route::get('page/trainer_manager','StaffController@getTrainer');
 // ====================BMR Sheer===============================================
 Route::get('bmr_sheet','StaffController@getBmrSheet');
 // ===============Course Manager =============================================
-Route::get('page/course_manager','StaffController@getCourseManager');
+Route::get('page/course_manager','StaffController@getCourseManager')->name('course_manager');
+
+Route::get('page/course_manager/edit/{id}','StaffController@getEditCourseManager');
+Route::post('page/course_manager/edit/{id}','StaffController@postEditCourseManager');
+
+Route::get('page/course_manager/delete{id}','StaffController@getDeleteCourseManager');
 // ========================================================================
+// ===========================Calendar========================================
+Route::get('calendar/{id}','StaffController@getCalendar');
+Route::post('calendar/create','StaffController@postCreate')->name('createCalendar');
+Route::post('calendar/update','StaffController@postUpdate');
+Route::post('calendar/delete','StaffController@postDelete');
+
+// ===================================================================
+Route::get('product','StaffController@getProduct');
+Route::get('product_detail/{id}','StaffController@getProductDetail');
+// =================================================================
 Route::get('schedule','PageController@getListSchedule');
 
 Route::get('schedule/create_schedule','PageController@getCreateSchedule');
@@ -79,6 +97,26 @@ Route::get('user/register','UserController@getRegisterUser');
 Route::post('user/register','UserController@postRegisterUser');
 
 Route::get('user/logout','UserController@getLogoutUser');
+
+// ===========================Trainer Manager ================================
+Route::get('manager/exercise','TrainerManagerController@getExercise');
+
+Route::get('manager/exercise/add','TrainerManagerController@getAddExercise')->name('add_exercise_manager');
+Route::post('manager/exercise/add','TrainerManagerController@postAddExercise');
+
+Route::get('manager/exercise/edit/{id}','TrainerManagerController@getEditExercise');
+Route::post('manager/exercise/edit{id}','TrainerManagerController@postEditExercise');
+
+Route::get('manager/exercise/delete/{id}','TrainerManagerController@getDeleteExercise');
+
+// ============
+Route::get('manager/classes/calendar','TrainerManagerController@getClasses');
+Route::get('manager/classes/calendar/{id}','TrainerManagerController@getClassesCalendar');
+Route::get('manager/classes/calendar/add-event/{id}','TrainerManagerController@getAddEvent');
+Route::post('manager/classes/calendar/add-event/{id}','TrainerManagerController@postAddEvent');
+Route::post('delete/event/{id}','TrainerManagerController@postDeleteEvent')->name('delete_event');
+
+Route::get('manager/classes/calendar/delete{id}','TrainerManagerController@getClassesCalendarDelete');
 // ===========================================================================
 Route::get('admin/login','UserController@getLoginAdmin');
 Route::post('admin/login','UserController@postLoginAdmin');
